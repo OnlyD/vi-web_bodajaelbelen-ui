@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Denegado - Boda de Belén y Jael</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffeef7 0%, #fff5f5 50%, #ffeef7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+        }
+
+        .access-container {
+            max-width: 600px;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 2px solid #f8d7da;
+            margin: 20px;
+        }
+
+        .couple-names {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #c2185b;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .ampersand {
+            font-size: 2.5rem;
+            color: #d81b60;
+            margin: 0 15px;
+        }
+
+        .lock-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            color: #c2185b;
+        }
+
+        .access-title {
+            font-size: 2rem;
+            color: #c2185b;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive;
+            font-weight: 600;
+        }
+
+        .access-message {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .access-message p {
+            margin-bottom: 15px;
+        }
+
+        .hearts {
+            font-size: 2rem;
+            margin: 30px 0;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .access-container {
+                padding: 40px 30px;
+                margin: 15px;
+            }
+            
+            .couple-names {
+                font-size: 2.5rem;
+            }
+            
+            .ampersand {
+                font-size: 2rem;
+                margin: 0 10px;
+            }
+            
+            .access-title {
+                font-size: 1.8rem;
+            }
+            
+            .access-message {
+                font-size: 1.1rem;
+            }
+            
+            .lock-icon {
+                font-size: 3rem;
+            }
+        }
+
+        /* Sparkle animation */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #c2185b;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="access-container">
+        <h1 class="couple-names">Belén <span class="ampersand">&</span> Jael</h1>
+        
+        <div class="lock-icon">🔒</div>
+        
+        <h2 class="access-title">Invitación Privada</h2>
+        
+        <div class="access-message">
+            <p><strong>Esta invitación es solo para invitados especiales.</strong></p>
+            <p>Para acceder a nuestra invitación de boda, necesitas el enlace especial que enviamos a nuestros queridos invitados.</p>
+            <p>Si crees que deberías tener acceso, por favor contacta directamente a los novios.</p>
+        </div>
+        
+        <div class="hearts">💕 💐 💕</div>
+    </div>
+
+    <script>
+        // Add some sparkle effects
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Create sparkles every few seconds
+        setInterval(createSparkle, 3000);
+        
+        // Create initial sparkles
+        for (let i = 0; i < 3; i++) {
+            setTimeout(createSparkle, i * 500);
+        }
+    </script>
+</body>
+</html>

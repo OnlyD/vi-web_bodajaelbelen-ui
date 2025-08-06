@@ -53,6 +53,109 @@ Resources:
         - Key: Service
           Value: acm
 
+  # Lambda@Edge function for token validation
+  AuthLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: BodaBelen-AuthFunction
+      Runtime: nodejs18.x
+      Handler: index.handler
+      Role: !GetAtt AuthLambdaRole.Arn
+      Code:
+        ZipFile: |
+          'use strict';
+          exports.handler = (event, context, callback) => {
+              const request = event.Records[0].cf.request;
+              const uri = request.uri;
+              
+              // Define the permanent token (you can change this)
+              const VALID_TOKEN = 'wedding2025';
+              
+              // Parse query string to get token parameter
+              const querystring = request.querystring;
+              const urlParams = new URLSearchParams(querystring);
+              const providedToken = urlParams.get('token');
+              
+              // Check if accessing the access-denied page (allow it)
+              if (uri === '/access-denied.html') {
+                  callback(null, request);
+                  return;
+              }
+              
+              // Check if token is valid
+              if (providedToken === VALID_TOKEN) {
+                  // Token is valid, allow request to continue
+                  callback(null, request);
+                  return;
+              }
+              
+              // Invalid or missing token - redirect to access denied page
+              const response = {
+                  status: '302',
+                  statusDescription: 'Found',
+                  headers: {
+                      location: [{
+                          key: 'Location',
+                          value: '/access-denied.html'
+                      }],
+                      'cache-control': [{
+                          key: 'Cache-Control',
+                          value: "max-age=0"
+                      }]
+                  }
+              };
+              
+              callback(null, response);
+          };
+      Tags:
+        - Key: Project
+          Value: BodaBelenJael
+        - Key: Environment
+          Value: prod
+        - Key: Component
+          Value: auth
+        - Key: Repository
+          Value: vi-web_bodajaelbelen-ui
+        - Key: Owner
+          Value: OnlyD
+        - Key: Service
+          Value: lambda
+
+  # Lambda@Edge Role
+  AuthLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+                - edgelambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Tags:
+        - Key: Project
+          Value: BodaBelenJael
+        - Key: Environment
+          Value: prod
+        - Key: Component
+          Value: auth
+        - Key: Repository
+          Value: vi-web_bodajaelbelen-ui
+        - Key: Owner
+          Value: OnlyD
+        - Key: Service
+          Value: iam
+
+  # Lambda@Edge Version (required for CloudFront)
+  AuthLambdaVersion:
+    Type: AWS::Lambda::Version
+    Properties:
+      FunctionName: !Ref AuthLambdaFunction
+
   # S3 Bucket for website hosting
   WebsiteBucket:
     Type: AWS::S3::Bucket
@@ -132,6 +235,9 @@ Resources:
           CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6  # CachingOptimized
           OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac  # AllViewerExceptHostHeader
           ResponseHeadersPolicyId: 60669652-455b-4ae9-85a4-c4c02393f86c  # SimpleCORS
+          LambdaFunctionAssociations:
+            - EventType: viewer-request
+              LambdaFunctionARN: !Ref AuthLambdaVersion
         CustomErrorResponses:
           - ErrorCode: 403
             ResponseCode: 200
