@@ -6,7 +6,7 @@ exports.handler = (event, context, callback) => {
     const uri = request.uri;
     
     // Define the permanent token (you can change this)
-    const VALID_TOKEN = 'amor';
+    const VALID_TOKEN = 'love4ever';
     
     // Parse query string to get token parameter
     const querystring = request.querystring;
