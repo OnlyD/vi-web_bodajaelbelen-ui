@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda de Belén y Jael</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <div class="hero-content">
+                <h1 class="couple-names">Belén <span class="ampersand">&</span> Jael</h1>
+                <p class="tagline">Nos casamos y queremos celebrarlo contigo</p>
+                <div class="wedding-date">
+                    <span class="date-text">28 de Febrero, 2025</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="details">
+                <div class="detail-card">
+                    <div class="icon">💒</div>
+                    <h3>Ceremonia</h3>
+                    <p><strong>Iglesia San José</strong></p>
+                    <p>Av. Principal 123, Ciudad</p>
+                    <p>4:00 PM</p>
+                </div>
+
+                <div class="detail-card">
+                    <div class="icon">🎉</div>
+                    <h3>Recepción</h3>
+                    <p><strong>Salón de Eventos Luna</strong></p>
+                    <p>Calle de la Alegría 456, Ciudad</p>
+                    <p>6:00 PM - 12:00 AM</p>
+                </div>
+
+                <div class="detail-card">
+                    <div class="icon">🎵</div>
+                    <h3>Celebración</h3>
+                    <p><strong>Cena, Baile y Diversión</strong></p>
+                    <p>Música en vivo</p>
+                    <p>Barra libre</p>
+                </div>
+            </section>
+
+            <section class="countdown">
+                <h2>¡Faltan solo!</h2>
+                <div class="countdown-timer">
+                    <div class="time-unit">
+                        <span id="days">00</span>
+                        <label>Días</label>
+                    </div>
+                    <div class="time-unit">
+                        <span id="hours">00</span>
+                        <label>Horas</label>
+                    </div>
+                    <div class="time-unit">
+                        <span id="minutes">00</span>
+                        <label>Minutos</label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="rsvp">
+                <h2>Confirma tu asistencia</h2>
+                <p>Por favor confirma antes del 15 de Febrero</p>
+                <div class="rsvp-buttons">
+                    <button class="btn btn-primary" onclick="confirmAttendance('si')">¡Estaré ahí! ✨</button>
+                    <button class="btn btn-secondary" onclick="confirmAttendance('no')">No podré asistir 😔</button>
+                </div>
+            </section>
+
+            <section class="message">
+                <h2>Un mensaje especial</h2>
+                <div class="message-content">
+                    <p>Después de tanto tiempo juntos, hemos decidido dar el siguiente paso en nuestro amor. Queremos compartir este momento tan especial con las personas que más queremos.</p>
+                    <p>Tu presencia hará que nuestro día sea aún más perfecto.</p>
+                    <p class="signature">Con amor,<br><strong>Belén y Jael</strong> 💕</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="contact-info">
+                <p>¿Preguntas? Contáctanos:</p>
+                <p>📱 Belén: +1 234-567-8900</p>
+                <p>📱 Jael: +1 234-567-8901</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
