@@ -68,7 +68,7 @@ Resources:
               const request = event.Records[0].cf.request;
               const uri = request.uri;
               
-              // Define the permanent token (you can change this)
+              // Define the permanent token (you can change this) - Updated v2
               const VALID_TOKEN = 'love4ever';
               
               // Parse query string to get token parameter
