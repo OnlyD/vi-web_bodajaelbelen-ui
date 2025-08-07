@@ -108,18 +108,12 @@ Resources:
               callback(null, response);
           };
       Tags:
-        - Key: Project
-          Value: BodaBelenJael
-        - Key: Environment
-          Value: prod
-        - Key: Component
-          Value: auth
-        - Key: Repository
-          Value: vi-web_bodajaelbelen-ui
-        - Key: Owner
-          Value: OnlyD
-        - Key: Service
-          Value: lambda
+        Project: BodaBelenJael
+        Environment: prod
+        Component: auth
+        Repository: vi-web_bodajaelbelen-ui
+        Owner: OnlyD
+        Service: lambda
 
   # Lambda@Edge Role
   AuthLambdaRole:
