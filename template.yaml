@@ -62,8 +62,7 @@ Resources:
       Handler: index.handler
       Role: !GetAtt AuthLambdaRole.Arn
       AutoPublishAlias: live
-      Code:
-        ZipFile: |
+      InlineCode: |
           'use strict';
           exports.handler = (event, context, callback) => {
               const request = event.Records[0].cf.request;
