@@ -55,12 +55,13 @@ Resources:
 
   # Lambda@Edge function for token validation
   AuthLambdaFunction:
-    Type: AWS::Lambda::Function
+    Type: AWS::Serverless::Function
     Properties:
       FunctionName: BodaBelen-AuthFunction
       Runtime: nodejs18.x
       Handler: index.handler
       Role: !GetAtt AuthLambdaRole.Arn
+      AutoPublishAlias: live
       Code:
         ZipFile: |
           'use strict';
@@ -150,13 +151,6 @@ Resources:
         - Key: Service
           Value: iam
 
-  # Lambda@Edge Version (required for CloudFront)
-  AuthLambdaVersion:
-    Type: AWS::Lambda::Version
-    Properties:
-      FunctionName: !Ref AuthLambdaFunction
-      CodeSha256: !GetAtt AuthLambdaFunction.CodeSha256
-
   # S3 Bucket for website hosting
   WebsiteBucket:
     Type: AWS::S3::Bucket
@@ -238,7 +232,7 @@ Resources:
           ResponseHeadersPolicyId: 60669652-455b-4ae9-85a4-c4c02393f86c  # SimpleCORS
           LambdaFunctionAssociations:
             - EventType: viewer-request
-              LambdaFunctionARN: !Ref AuthLambdaVersion
+              LambdaFunctionARN: !Ref AuthLambdaFunction.Version
         CustomErrorResponses:
           - ErrorCode: 403
             ResponseCode: 200
