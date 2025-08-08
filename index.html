@@ -63,22 +63,23 @@
         /* Navigation */
         .nav-menu {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(15px);
-            border-radius: 50px;
-            padding: 15px 25px;
-            box-shadow: 0 15px 40px rgba(114, 47, 55, 0.15);
+            border-radius: 40px;
+            padding: 10px 20px;
+            box-shadow: 0 10px 30px rgba(114, 47, 55, 0.15);
             border: 1px solid rgba(232, 180, 184, 0.3);
         }
 
         .nav-menu a {
             color: var(--wine-red);
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 13px;
+            margin: 0 12px;
+            font-size: 11px;
             font-weight: 500;
             transition: all 0.3s ease;
             text-transform: uppercase;
@@ -737,6 +738,135 @@
             box-shadow: 0 10px 25px rgba(114, 47, 55, 0.3);
         }
 
+        /* Accommodation Section */
+        .accommodation-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--light-rose) 0%, var(--pearl-white) 100%);
+        }
+
+        .accommodation-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accommodation-card {
+            background: linear-gradient(135deg, var(--rose-gold), var(--deep-rose));
+            color: white;
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(232, 180, 184, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accommodation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--wine-red), var(--light-wine));
+        }
+
+        .accommodation-icon {
+            font-size: 3rem;
+            color: var(--wine-red);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .pricing-info {
+            display: grid;
+            gap: 20px;
+        }
+
+        .price-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(232, 180, 184, 0.3);
+        }
+
+        .price-item i {
+            color: var(--wine-red);
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .price-label {
+            font-size: 1.1rem;
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .price-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--wine-red);
+        }
+
+        .accommodation-details {
+            margin-top: 25px;
+        }
+
+        .accommodation-details p {
+            margin: 15px 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .accommodation-details i {
+            color: var(--wine-red);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .accommodation-rsvp {
+            background: var(--light-rose);
+            color: var(--wine-red);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid rgba(114, 47, 55, 0.2);
+        }
+
+        .accommodation-rsvp p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .accommodation-recommendation {
+            background: var(--wine-red);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(114, 47, 55, 0.4);
+            margin-top: 25px;
+            border: 2px solid rgba(232, 180, 184, 0.3);
+        }
+
+        .recommendation-icon {
+            font-size: 2rem;
+            color: var(--rose-gold);
+            margin-bottom: 15px;
+        }
+
+        .accommodation-recommendation p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
         /* Gift Registry */
         .registry-section {
             padding: 60px 20px;
@@ -979,6 +1109,139 @@
             color: var(--light-rose);
         }
 
+        /* Special Thanks Section */
+        .thanks-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--light-rose) 0%, var(--pearl-white) 100%);
+        }
+
+        .thanks-subsection {
+            margin-bottom: 60px;
+            background: var(--soft-white);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 25px 50px rgba(114, 47, 55, 0.15);
+            border: 1px solid rgba(232, 180, 184, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thanks-subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .thanks-subsection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--rose-gold), var(--deep-rose), var(--wine-red));
+        }
+
+        .thanks-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--wine-red);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .thanks-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .thanks-intro {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .thanks-list {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .thanks-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--light-rose), rgba(232, 180, 184, 0.3));
+            border-radius: 15px;
+            border-left: 4px solid var(--wine-red);
+            transition: all 0.3s ease;
+        }
+
+        .thanks-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(114, 47, 55, 0.2);
+        }
+
+        .thanks-item i {
+            font-size: 1.5rem;
+            color: var(--wine-red);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .thanks-item div {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .thanks-item strong {
+            color: var(--wine-red);
+            font-weight: 600;
+        }
+
+        .thanks-blessing {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .thanks-signature {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--wine-red);
+        }
+
+        .signature-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--deep-rose);
+            display: block;
+            margin-top: 10px;
+        }
+
+        .thanks-paragraph {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .thanks-paragraph:last-child {
+            margin-bottom: 0;
+        }
+
         /* Footer */
         .footer {
             background: var(--dark-wine);
@@ -1054,15 +1317,17 @@
             .nav-menu {
                 position: relative;
                 top: auto;
-                right: auto;
-                margin: 20px;
+                left: auto;
+                transform: none;
+                margin: 15px auto;
                 text-align: center;
-                padding: 12px 20px;
+                padding: 8px 15px;
+                max-width: 90%;
             }
 
             .nav-menu a {
-                margin: 0 10px;
-                font-size: 12px;
+                margin: 0 8px;
+                font-size: 10px;
             }
 
             .couple-names {
@@ -1650,6 +1915,43 @@
         </div>
     </section>
 
+    <!-- Accommodation Section -->
+    <section id="accommodation" class="accommodation-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Hospedaje (Opcional)</h2>
+            <div class="accommodation-content" data-aos="fade-up" data-aos-delay="100">
+                <div class="accommodation-card">
+                    <div class="accommodation-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="pricing-info">
+                        <div class="price-item">
+                            <i class="fas fa-user"></i>
+                            <span class="price-label">Adulto:</span>
+                            <span class="price-value">$750</span>
+                        </div>
+                        <div class="price-item">
+                            <i class="fas fa-child"></i>
+                            <span class="price-label">Infantil (5-7 años):</span>
+                            <span class="price-value">$600</span>
+                        </div>
+                        <div class="accommodation-details">
+                            <p><i class="fas fa-clock"></i> El check-in se podrá realizar a partir de las 14:00 hrs. o regresando de la ceremonia religiosa</p>
+                            <p><i class="fas fa-swimming-pool"></i> Cuenta con alberca y podrás ingresar con el traje de baño de tu preferencia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accommodation-recommendation" data-aos="fade-up" data-aos-delay="200">
+                    <div class="recommendation-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <p>Aparta tu hospedaje antes de la fecha límite, así podremos organizar con cariño tu lugar y preparar las habitaciones con anticipación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Gift Registry -->
     <section id="registry" class="registry-section">
         <div class="container">
@@ -1735,6 +2037,96 @@
                     <div style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: var(--light-rose);">
                         Belen & Jael
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Thanks Section -->
+    <section id="thanks" class="thanks-section">
+        <div class="container">
+            <!-- Godparents Section -->
+            <div class="thanks-subsection" data-aos="fade-up">
+                <h2 class="thanks-title">A Nuestros Padrinos...</h2>
+                <div class="thanks-content">
+                    <p class="thanks-intro">
+                        Agradecemos con cariño y profunda gratitud, por aceptar acompañarnos en este sacramento tan importante y por ofrecernos su apoyo espiritual y simbólico:
+                    </p>
+                    
+                    <div class="thanks-list">
+                        <div class="thanks-item">
+                            <i class="fas fa-praying-hands"></i>
+                            <div>
+                                <strong>Velación:</strong> Gracias por su oración, fe y guía.
+                            </div>
+                        </div>
+                        
+                        <div class="thanks-item">
+                            <i class="fas fa-ring"></i>
+                            <div>
+                                <strong>Arras:</strong> Por representar la prosperidad y la confianza compartida.
+                            </div>
+                        </div>
+                        
+                        <div class="thanks-item">
+                            <i class="fas fa-gift"></i>
+                            <div>
+                                <strong>Anillos:</strong> Por entregarnos el símbolo eterno de amor y compromiso.
+                            </div>
+                        </div>
+                        
+                        <div class="thanks-item">
+                            <i class="fas fa-ribbon"></i>
+                            <div>
+                                <strong>Lazo:</strong> Por unirnos con un lazo de amor y fortaleza.
+                            </div>
+                        </div>
+                        
+                        <div class="thanks-item">
+                            <i class="fas fa-bible"></i>
+                            <div>
+                                <strong>Biblia y Rosario:</strong> Por darnos la luz de la Palabra de Dios.
+                            </div>
+                        </div>
+                        
+                        <div class="thanks-item">
+                            <i class="fas fa-leaf"></i>
+                            <div>
+                                <strong>Ramo:</strong> Por entregar este gesto de devoción a la Virgen y nuestros anhelos como esposos.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="thanks-blessing">
+                        Que Dios los bendiga siempre por su amor y por ser parte esencial de este nuevo comienzo.
+                    </p>
+                    
+                    <div class="thanks-signature">
+                        Con todo nuestro cariño<br>
+                        <span class="signature-names">Belén y Jael</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Family and Friends Section -->
+            <div class="thanks-subsection" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="thanks-title">A Nuestros Padres, Familia y Amigos...</h2>
+                <div class="thanks-content">
+                    <p class="thanks-paragraph">
+                        Agradecemos de todo corazón a nuestros padres por ser el pilar de nuestras vidas. Por su amor, ejemplo y apoyo incondicional que nos ha guiado hasta este día tan especial.
+                    </p>
+                    
+                    <p class="thanks-paragraph">
+                        Gracias por acompañarnos, por bendecir nuestra unión y por sembrar en nosotros los valores que hoy nos unen como pareja.
+                    </p>
+                    
+                    <p class="thanks-paragraph">
+                        Gracias a nuestros hermanos, sobrinos y familia por estar y ser parte fundamental en nuestras vidas, por compartir, celebrar y por ser parte de nuestra historia.
+                    </p>
+                    
+                    <p class="thanks-paragraph">
+                        Gracias a esos amigos que nos acompañan con su cariño, apoyo, sus risas y energía única, su amistad ha sido un regalo en cada etapa y hoy es un honor compartir con ustedes un momento tan especial.
+                    </p>
                 </div>
             </div>
         </div>
