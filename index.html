@@ -249,7 +249,7 @@
         }
 
         .romantic-quote::before {
-            content: '"';
+            content: '';
             font-size: 2.8rem;
             color: var(--rose-gold);
             position: absolute;
@@ -299,7 +299,7 @@
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
             margin-bottom: 30px;
         }
@@ -307,11 +307,11 @@
         .countdown-item {
             background: linear-gradient(135deg, var(--wine-red), var(--light-wine));
             color: white;
-            border-radius: 15px;
-            padding: 20px 18px;
-            min-width: 90px;
+            border-radius: 12px;
+            padding: 16px 14px;
+            min-width: 72px;
             box-shadow: 
-                0 15px 30px rgba(114, 47, 55, 0.3),
+                0 12px 24px rgba(114, 47, 55, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
             border: 2px solid rgba(232, 180, 184, 0.3);
             transition: transform 0.3s ease;
@@ -339,7 +339,7 @@
         }
 
         .countdown-number {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--rose-gold);
             display: block;
@@ -887,216 +887,6 @@
         .color-pearl { background: var(--pearl-white); }
         .color-cream { background: var(--cream); }
 
-        /* Music Player */
-        .music-section {
-            padding: 60px 20px;
-            background: linear-gradient(135deg, var(--wine-red), var(--light-wine));
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .music-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><path d="M40 10 Q20 20 40 40 Q60 20 40 10" fill="rgba(232,180,184,0.08)" transform="rotate(0 40 40)"/><path d="M40 10 Q20 20 40 40 Q60 20 40 10" fill="rgba(232,180,184,0.06)" transform="rotate(90 40 40)"/><path d="M40 10 Q20 20 40 40 Q60 20 40 10" fill="rgba(232,180,184,0.04)" transform="rotate(180 40 40)"/><path d="M40 10 Q20 20 40 40 Q60 20 40 10" fill="rgba(232,180,184,0.08)" transform="rotate(270 40 40)"/></svg>') repeat;
-            animation: musicPattern 25s infinite linear;
-        }
-
-        @keyframes musicPattern {
-            0% { transform: translateX(0) translateY(0) rotate(0deg); }
-            100% { transform: translateX(-80px) translateY(-80px) rotate(360deg); }
-        }
-
-        .music-player {
-            max-width: 500px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 35px;
-            backdrop-filter: blur(20px);
-            border: 2px solid rgba(232, 180, 184, 0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .music-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
-            margin-bottom: 40px;
-            color: var(--light-rose);
-        }
-
-        .music-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .music-btn {
-            background: rgba(232, 180, 184, 0.2);
-            border: 2px solid var(--rose-gold);
-            color: white;
-            font-size: 1.8rem;
-            padding: 20px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .music-btn:hover {
-            background: var(--rose-gold);
-            color: var(--wine-red);
-            transform: scale(1.1);
-        }
-
-        .play-btn {
-            font-size: 2.5rem;
-            padding: 25px;
-            width: 90px;
-            height: 90px;
-        }
-
-        .song-info {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            color: var(--light-rose);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--rose-gold), var(--light-rose));
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 3px;
-        }
-
-        /* Digital Guestbook */
-        .guestbook-section {
-            padding: 60px 20px;
-            background: var(--soft-white);
-        }
-
-        .guestbook-form {
-            max-width: 600px;
-            margin: 0 auto 50px;
-            background: linear-gradient(135deg, var(--pearl-white), var(--light-rose));
-            padding: 35px;
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(114, 47, 55, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: var(--wine-red);
-            margin-bottom: 12px;
-            font-size: 1.2rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 20px;
-            border: 2px solid rgba(232, 180, 184, 0.3);
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background: var(--soft-white);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--rose-gold);
-            box-shadow: 0 0 0 3px rgba(232, 180, 184, 0.2);
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, var(--wine-red), var(--light-wine));
-            color: white;
-            padding: 20px 40px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .submit-btn:hover {
-            background: linear-gradient(135deg, var(--rose-gold), var(--deep-rose));
-            transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(114, 47, 55, 0.3);
-        }
-
-        .messages-list {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .message-item {
-            background: linear-gradient(135deg, var(--pearl-white), rgba(232, 180, 184, 0.1));
-            padding: 25px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--rose-gold);
-            box-shadow: 0 12px 28px rgba(114, 47, 55, 0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .message-item:hover {
-            transform: translateX(10px);
-        }
-
-        .message-author {
-            font-weight: 600;
-            color: var(--wine-red);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .message-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            line-height: 1.7;
-            color: var(--text-dark);
-        }
 
         /* RSVP Section */
         .rsvp-section {
@@ -1475,7 +1265,9 @@
                     <p class="wedding-phrase">Con infinita alegría, te invitamos a celebrar nuestra unión en matrimonio</p>
                     <div class="wedding-date">04 • 10 • 25</div>
                     <div class="romantic-quote">
-                        El amor verdadero no tiene final feliz, porque el amor verdadero nunca termina. Ser profundamente amado por alguien te da fuerza, mientras que amar a alguien profundamente te da coraje.
+                        Ella sueña con recorrer cada rincón del mundo, él con completar cada misión. Y aunque viajan por distintas rutas, sus caminos se cruzaron en el momento perfecto.
+                        <br>
+                        Hoy, guiados por Dios, inicia la aventura más hermosa: Una vida juntos, donde cada paso y cada partida se juega en equipo.
                     </div>
                 </div>
             </div>
@@ -1603,7 +1395,7 @@
     <!-- Wedding Itinerary -->
     <section id="itinerary" class="itinerary-section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Programa del Día</h2>
+            <h2 class="section-title" data-aos="fade-up">Programa del Sábado</h2>
             <div class="itinerary-timeline">
                 
                 <div class="itinerary-item" data-aos="slide-left" data-aos-delay="200">
@@ -1618,24 +1410,24 @@
                 </div>
                 
                 <div class="itinerary-item" data-aos="slide-right" data-aos-delay="300">
-                    <div class="itinerary-time">6:00pm</div>
+                    <div class="itinerary-time">7:00pm</div>
                     <div class="itinerary-icon">
-                        <i class="fas fa-camera"></i>
+                        <i class="fas fa-door-open"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Sesión Fotográfica</h3>
-                        <p>Fotos familiares, con amigos y pareja. Momentos únicos capturados para la eternidad.</p>
+                        <h3>Check-in (Solo para los que se hospedan)</h3>
+                        <p>Registro y acomodación en Finca La Fortaleza para los invitados que se quedan.</p>
                     </div>
                 </div>
 
                 <div class="itinerary-item" data-aos="slide-right" data-aos-delay="100">
                     <div class="itinerary-time">7:00pm</div>
                     <div class="itinerary-icon">
-                        <i class="fas fa-door-open"></i>
+                        <i class="fas fa-glass-cheers"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Recepción de Invitados</h3>
-                        <p>Bienvenida en la Finca y registro de hospedaje.</p>
+                        <h3>Recepción Salón</h3>
+                        <p>Bienvenida en el salón de la Finca La Fortaleza. Inicio de la celebración.</p>
                     </div>
                 </div>
 
@@ -1645,78 +1437,151 @@
                         <i class="fas fa-heart"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Que Vivan los Novios</h3>
-                        <p>Entrada del nuevo y feliz matrimonio.</p>
+                        <h3>Entrada de los Novios</h3>
+                        <p>Entrada triunfal del nuevo y feliz matrimonio. ¡Que vivan los novios!</p>
                     </div>
                 </div>
 
                 <div class="itinerary-item" data-aos="slide-right" data-aos-delay="500">
-                    <div class="itinerary-time">7:45pm</div>
+                    <div class="itinerary-time">7:40pm</div>
                     <div class="itinerary-icon">
                         <i class="fas fa-utensils"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Cena de Gala</h3>
-                        <p>Exquisita cena de tres tiempos diseñada especialmente para esta ocasión tan importante.</p>
+                        <h3>Cena Amenizada con Mariachi</h3>
+                        <p>Exquisita cena amenizada por un conjunto de mariachis. ¡Si Señor!</p>
                     </div>
                 </div>
 
                 <div class="itinerary-item" data-aos="slide-right" data-aos-delay="700">
-                    <div class="itinerary-time">8:00pm</div>
-                    <div class="itinerary-icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <div class="itinerary-details">
-                        <h3>Mariachi</h3>
-                        <p>Cena amenizada por un conjunto de Mariachis ¡Si Señor!</p>
-                    </div>
-                </div>
-                
-                <div class="itinerary-item" data-aos="slide-left" data-aos-delay="400">
-                    <div class="itinerary-time">9:00pm</div>
+                    <div class="itinerary-time">8:40pm</div>
                     <div class="itinerary-icon">
                         <i class="fas fa-glass-cheers"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Cóctel de Celebración</h3>
-                        <p>Brindis especial, aperitivos gourmet y traslado al salón de recepción.</p>
+                        <h3>Brindis</h3>
+                        <p>Brindis especial por los novios y su nueva vida juntos.</p>
                     </div>
                 </div>
-
-                <div class="itinerary-item" data-aos="slide-right" data-aos-delay="700">
-                    <div class="itinerary-time">9:15pm</div>
+                
+                <div class="itinerary-item" data-aos="slide-left" data-aos-delay="400">
+                    <div class="itinerary-time">8:50pm</div>
                     <div class="itinerary-icon">
                         <i class="fas fa-music"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Primer Vals y Baile</h3>
-                        <p>Primer baile como esposos seguido de la apertura de la pista. ¡Que comience la celebración!</p>
+                        <h3>Primer Baile Novios</h3>
+                        <p>El primer baile como esposos. Un momento mágico e inolvidable.</p>
+                    </div>
+                </div>
+
+                <div class="itinerary-item" data-aos="slide-right" data-aos-delay="700">
+                    <div class="itinerary-time">9:00pm</div>
+                    <div class="itinerary-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="itinerary-details">
+                        <h3>¡Hora de Bailar!</h3>
+                        <p>Apertura de la pista de baile. ¡Que comience la gran celebración!</p>
                     </div>
                 </div>
                 
 
 
                 <div class="itinerary-item" data-aos="slide-left" data-aos-delay="600">
-                    <div class="itinerary-time">21:00</div>
+                    <div class="itinerary-time">11:00pm</div>
                     <div class="itinerary-icon">
                         <i class="fas fa-birthday-cake"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Corte del Pastel</h3>
-                        <p>Momento especial y simbólico del corte del pastel de bodas y brindis de los novios.</p>
+                        <h3>Pastel</h3>
+                        <p>Momento especial y simbólico del corte del pastel de bodas.</p>
                     </div>
                 </div>
                 
                 
                 
                 <div class="itinerary-item" data-aos="slide-left" data-aos-delay="800">
-                    <div class="itinerary-time">02:00</div>
+                    <div class="itinerary-time">11:30pm</div>
                     <div class="itinerary-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-glass-cheers"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Despedida Especial</h3>
-                        <p>Cierre de la celebración con agradecimientos. ¡Gracias por hacer de este día algo inolvidable!</p>
+                        <h3>¡Que Continue la Fiesta!</h3>
+                        <p>La celebración continúa hasta altas horas. ¡Sigamos bailando y celebrando!</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item" data-aos="slide-right" data-aos-delay="900">
+                    <div class="itinerary-time">1:00am</div>
+                    <div class="itinerary-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="itinerary-details">
+                        <h3>Torna Boda</h3>
+                        <p>Antojitos mexicanos, chilaquiles y café para reponer energías. Perfecto para los que tienen hambre después de tanto bailar.</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item" data-aos="slide-left" data-aos-delay="1000">
+                    <div class="itinerary-time">2:30am</div>
+                    <div class="itinerary-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="itinerary-details">
+                        <h3>Fin del Evento / After en Habitaciones o Jardín</h3>
+                        <p>Final oficial del evento. Los que gusten pueden continuar la plática en las habitaciones o jardín.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sunday Program Section -->
+            <div class="container" style="margin-top: 80px;">
+                <h2 class="section-title" data-aos="fade-up" style="color: var(--wine-red); margin-bottom: 55px;">Programa del Domingo</h2>
+                <div class="itinerary-timeline">
+                    
+                    <div class="itinerary-item" data-aos="slide-left" data-aos-delay="100">
+                        <div class="itinerary-time">7:00am</div>
+                        <div class="itinerary-icon">
+                            <i class="fas fa-swimming-pool"></i>
+                        </div>
+                        <div class="itinerary-details">
+                            <h3>Alberca Abierta</h3>
+                            <p>Disfruta de un chapuzón matutino en la alberca. Perfecta para relajarse y recuperarse después de la celebración de anoche.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-item" data-aos="slide-right" data-aos-delay="200">
+                        <div class="itinerary-time">10:00am</div>
+                        <div class="itinerary-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="itinerary-details">
+                            <h3>Desayuno</h3>
+                            <p>Delicioso desayuno para reponer energías. Un momento especial para compartir anécdotas de la boda con familia y amigos.</p>
+                        </div>
+                    </div>
+
+                    <div class="itinerary-item" data-aos="slide-left" data-aos-delay="300">
+                        <div class="itinerary-time">11:00am</div>
+                        <div class="itinerary-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="itinerary-details">
+                            <h3>Premio a los Ganadores</h3>
+                            <p>Entrega de premios y reconocimientos especiales. ¡Celebremos a los destacados de la noche!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-item" data-aos="slide-right" data-aos-delay="400">
+                        <div class="itinerary-time">1:00pm</div>
+                        <div class="itinerary-icon">
+                            <i class="fas fa-suitcase-rolling"></i>
+                        </div>
+                        <div class="itinerary-details">
+                            <h3>Check-out y Despedida</h3>
+                            <p>Momento de despedida final. Gracias por acompañarnos en este fin de semana tan especial e inolvidable.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1792,46 +1657,12 @@
             <div class="registry-cards">
                 <div class="registry-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="registry-icon">
-                        <i class="fas fa-store"></i>
+                        <i class="fas fa-gift"></i>
                     </div>
-                    <h3 class="registry-title">Liverpool</h3>
+                    <h3 class="registry-title">Mesa de Regalos</h3>
                     <p class="registry-details">
-                        Mesa de regalos tradicional<br>
-                        <strong>Folio:</strong> [Código/Número]<br>
-                        <strong>Novios:</strong> [Nombres Completos]<br>
-                        <strong>Fecha:</strong> [Fecha de Boda]
-                    </p>
-                    <a href="#" class="registry-button">
-                        <i class="fas fa-external-link-alt"></i> Ver Lista
-                    </a>
-                </div>
-                
-                <div class="registry-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="registry-icon">
-                        <i class="fab fa-amazon"></i>
-                    </div>
-                    <h3 class="registry-title">Amazon</h3>
-                    <p class="registry-details">
-                        Lista de deseos digital<br>
-                        <strong>Lista:</strong> [Nombre de Lista]<br>
-                        <strong>Búsqueda:</strong> [Nombres de Novios]<br>
-                        <strong>Entrega:</strong> Dirección automática
-                    </p>
-                    <a href="#" class="registry-button">
-                        <i class="fas fa-external-link-alt"></i> Ver Lista
-                    </a>
-                </div>
-                
-                <div class="registry-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="registry-icon">
-                        <i class="fas fa-envelope-open-dollar"></i>
-                    </div>
-                    <h3 class="registry-title">Aportación Económica</h3>
-                    <p class="registry-details">
-                        Tu presencia es nuestro mejor regalo,<br>
-                        pero si deseas obsequiarnos algo,<br>
-                        agradeceremos tu aportación para<br>
-                        comenzar nuestra nueva vida juntos.
+                        Tu presencia es el mejor regalo que podemos recibir, pero si deseas tener un detalle con nosotros lo agradeceremos y recibiremos de corazón, este nos será de gran ayuda para comenzar esta nueva etapa.<br><br>
+                        Ya sea un obsequio material, económico o detalle, tendremos una mesa de regalos en el salón.
                     </p>
                     <a href="#" class="registry-button">
                         <i class="fas fa-info-circle"></i> Información
@@ -1871,80 +1702,6 @@
         </div>
     </section>
 
-    <!-- Music Player -->
-    <section id="music" class="music-section">
-        <div class="container">
-            <div class="music-player" data-aos="fade-up">
-                <h2 class="music-title">Banda Sonora de Nuestro Amor</h2>
-                <div class="music-controls">
-                    <button class="music-btn" id="prevBtn">
-                        <i class="fas fa-step-backward"></i>
-                    </button>
-                    <button class="music-btn play-btn" id="playBtn">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <button class="music-btn" id="nextBtn">
-                        <i class="fas fa-step-forward"></i>
-                    </button>
-                </div>
-                <div class="song-info">
-                    <div id="songTitle">"Perfect" - Ed Sheeran</div>
-                    <div style="font-size: 1rem; opacity: 0.8; margin-top: 8px;">La canción que define nuestro amor</div>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress" id="progress"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Digital Guestbook -->
-    <section id="guestbook" class="guestbook-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Libro de Firmas Digital</h2>
-            
-            <div class="guestbook-form" data-aos="fade-up" data-aos-delay="200">
-                <form id="guestbookForm">
-                    <div class="form-group">
-                        <label for="guestName">
-                            <i class="fas fa-user"></i> Tu Nombre Completo
-                        </label>
-                        <input type="text" id="guestName" name="guestName" placeholder="Escribe tu nombre completo" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="guestMessage">
-                            <i class="fas fa-heart"></i> Mensaje para los Novios
-                        </label>
-                        <textarea id="guestMessage" name="guestMessage" placeholder="Comparte tus mejores deseos, consejos o recuerdos especiales..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Enviar Mensaje de Amor
-                    </button>
-                </form>
-            </div>
-            
-            <div class="messages-list">
-                <div class="message-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="message-author">
-                        <i class="fas fa-user-circle"></i> María Elena González
-                    </div>
-                    <div class="message-text">
-                        ¡Qué emoción tan grande poder acompañarlos en este día tan especial! Han sido testigos del amor más puro y verdadero. Les deseo una vida llena de bendiciones, risas y momentos inolvidables. ¡Los queremos muchísimo!
-                    </div>
-                </div>
-                
-                <div class="message-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="message-author">
-                        <i class="fas fa-user-circle"></i> Carlos y Sofía Martínez
-                    </div>
-                    <div class="message-text">
-                        Una pareja perfecta que se merece toda la felicidad del mundo. Que su amor crezca cada día más y que siempre encuentren motivos para sonreír juntos. ¡Que vivan muchos años llenos de amor, comprensión y alegría!
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- RSVP Section -->
     <section id="rsvp" class="rsvp-section">
         <div class="container">
@@ -1966,20 +1723,6 @@
                         <div class="contact-value">5526942821<br>
                                                    5551800626 
                         </div>
-                    </div>
-                    <div class="contact-item" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-label">Email</div>
-                        <div class="contact-value">por confirmar</div>
-                    </div>
-                    <div class="contact-item" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-label">Teléfono</div>
-                        <div class="contact-value">por confirmar</div>
                     </div>
                 </div>
                 
@@ -2053,135 +1796,6 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Music Player Functionality
-        const songs = [
-            { 
-                title: '"Perfect" - Ed Sheeran', 
-                description: 'La canción que define nuestro amor' 
-            },
-            { 
-                title: '"All of Me" - John Legend', 
-                description: 'Para todos nuestros momentos especiales' 
-            },
-            { 
-                title: '"A Thousand Years" - Christina Perri', 
-                description: 'Nuestro primer baile como esposos' 
-            },
-            { 
-                title: '"Marry Me" - Train', 
-                description: 'La canción de nuestra propuesta' 
-            }
-        ];
-
-        let currentSong = 0;
-        let isPlaying = false;
-        let progress = 0;
-        let progressInterval;
-
-        const playBtn = document.getElementById('playBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const songTitle = document.getElementById('songTitle');
-        const progressBar = document.getElementById('progress');
-
-        function updateSongInfo() {
-            songTitle.innerHTML = songs[currentSong].title;
-            songTitle.nextElementSibling.innerHTML = songs[currentSong].description;
-        }
-
-        function togglePlay() {
-            isPlaying = !isPlaying;
-            const icon = playBtn.querySelector('i');
-            
-            if (isPlaying) {
-                icon.className = 'fas fa-pause';
-                startProgress();
-            } else {
-                icon.className = 'fas fa-play';
-                stopProgress();
-            }
-        }
-
-        function prevSong() {
-            currentSong = (currentSong - 1 + songs.length) % songs.length;
-            updateSongInfo();
-            resetProgress();
-        }
-
-        function nextSong() {
-            currentSong = (currentSong + 1) % songs.length;
-            updateSongInfo();
-            resetProgress();
-        }
-
-        function startProgress() {
-            progressInterval = setInterval(() => {
-                if (isPlaying && progress < 100) {
-                    progress += 0.3;
-                    progressBar.style.width = progress + '%';
-                } else if (progress >= 100) {
-                    clearInterval(progressInterval);
-                    nextSong();
-                    if (isPlaying) {
-                        setTimeout(() => {
-                            togglePlay();
-                        }, 800);
-                    }
-                }
-            }, 120);
-        }
-
-        function resetProgress() {
-            progress = 0;
-            progressBar.style.width = '0%';
-            if (progressInterval) {
-                clearInterval(progressInterval);
-            }
-        }
-
-        function stopProgress() {
-            if (progressInterval) {
-                clearInterval(progressInterval);
-            }
-        }
-
-        playBtn.addEventListener('click', togglePlay);
-        prevBtn.addEventListener('click', prevSong);
-        nextBtn.addEventListener('click', nextSong);
-
-        // Initialize music player
-        updateSongInfo();
-
-        // Guestbook Form
-        document.getElementById('guestbookForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('guestName').value;
-            const message = document.getElementById('guestMessage').value;
-            
-            if (name && message) {
-                // Create new message element
-                const messageElement = document.createElement('div');
-                messageElement.className = 'message-item';
-                messageElement.innerHTML = `
-                    <div class="message-author">
-                        <i class="fas fa-user-circle"></i> ${name}
-                    </div>
-                    <div class="message-text">${message}</div>
-                `;
-                
-                // Add to messages list
-                const messagesList = document.querySelector('.messages-list');
-                messagesList.insertBefore(messageElement, messagesList.firstChild);
-                
-                // Clear form
-                document.getElementById('guestName').value = '';
-                document.getElementById('guestMessage').value = '';
-                
-                // Show success message
-                alert('¡Gracias por tu hermoso mensaje! Los novios lo leerán con mucho cariño.');
-            }
-        });
 
         // Gallery click functionality
         document.querySelectorAll('.gallery-item').forEach(item => {
