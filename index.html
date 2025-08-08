@@ -249,7 +249,7 @@
         }
 
         .romantic-quote::before {
-            content: '';
+            content: '"';
             font-size: 2.8rem;
             color: var(--rose-gold);
             position: absolute;
@@ -1259,11 +1259,8 @@
             animation: pulse 2s infinite;
         }
 
-        /* Global mobile scaling */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            body {
-                font-size: 0.9rem;
-            }
             .nav-menu {
                 position: relative;
                 top: auto;
@@ -1279,11 +1276,11 @@
             }
 
             .couple-names {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .section-title {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
 
             .section-title::before,
@@ -1296,12 +1293,12 @@
             }
 
             .countdown-item {
-                min-width: 70px;
-                padding: 15px 12px;
+                min-width: 80px;
+                padding: 18px 15px;
             }
 
             .countdown-number {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .story-timeline::before {
@@ -1338,7 +1335,7 @@
             .itinerary-item {
                 flex-direction: column;
                 text-align: center;
-                padding: 25px 20px;
+                padding: 30px 25px;
             }
 
             .itinerary-time {
@@ -1356,7 +1353,7 @@
             }
 
             .location-card {
-                padding: 30px 25px;
+                padding: 40px 30px;
             }
 
             .registry-cards {
@@ -1396,57 +1393,53 @@
         }
 
         @media (max-width: 480px) {
-            body {
-                font-size: 0.85rem;
-            }
-            
             .hero-content {
-                padding: 50px 25px;
+                padding: 60px 30px;
             }
 
             .couple-names {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
 
             .wedding-date {
-                font-size: 1.4rem;
+                font-size: 1.8rem;
             }
 
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .countdown-item {
-                min-width: 60px;
-                padding: 12px 10px;
+                min-width: 70px;
+                padding: 15px 12px;
             }
 
             .countdown-number {
-                font-size: 1.3rem;
+                font-size: 1.5rem;
             }
 
             .story-content {
-                padding: 25px 20px;
+                padding: 30px 25px;
             }
 
             .itinerary-item {
-                padding: 20px 15px;
+                padding: 25px 20px;
             }
 
             .location-card {
-                padding: 30px 20px;
+                padding: 35px 25px;
             }
 
             .registry-card {
-                padding: 30px 25px;
+                padding: 40px 30px;
             }
 
             .guestbook-form {
-                padding: 30px 25px;
+                padding: 40px 30px;
             }
 
             .music-player {
-                padding: 30px 25px;
+                padding: 40px 30px;
             }
         }
     </style>
@@ -1482,9 +1475,7 @@
                     <p class="wedding-phrase">Con infinita alegría, te invitamos a celebrar nuestra unión en matrimonio</p>
                     <div class="wedding-date">04 • 10 • 25</div>
                     <div class="romantic-quote">
-                        Ella sueña con recorrer cada rincón del mundo, él con completar cada misión. Y aunque viajan por distintas rutas, sus caminos se cruzaron en el momento perfecto.
-                        <br>
-                        Hoy, guiados por Dios, inicia la aventura más hermosa: Una vida juntos, donde cada paso y cada partida se juega en equipo.
+                        El amor verdadero no tiene final feliz, porque el amor verdadero nunca termina. Ser profundamente amado por alguien te da fuerza, mientras que amar a alguien profundamente te da coraje.
                     </div>
                 </div>
             </div>
@@ -1612,7 +1603,7 @@
     <!-- Wedding Itinerary -->
     <section id="itinerary" class="itinerary-section">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Programa del Sábado</h2>
+            <h2 class="section-title" data-aos="fade-up">Programa del Día</h2>
             <div class="itinerary-timeline">
                 
                 <div class="itinerary-item" data-aos="slide-left" data-aos-delay="200">
@@ -1627,24 +1618,24 @@
                 </div>
                 
                 <div class="itinerary-item" data-aos="slide-right" data-aos-delay="300">
-                    <div class="itinerary-time">7:00pm</div>
+                    <div class="itinerary-time">6:00pm</div>
                     <div class="itinerary-icon">
-                        <i class="fas fa-door-open"></i>
+                        <i class="fas fa-camera"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Check-in (Solo para los que se hospedan)</h3>
-                        <p>Registro y acomodación en Finca La Fortaleza para los invitados que se quedan.</p>
+                        <h3>Sesión Fotográfica</h3>
+                        <p>Fotos familiares, con amigos y pareja. Momentos únicos capturados para la eternidad.</p>
                     </div>
                 </div>
 
                 <div class="itinerary-item" data-aos="slide-right" data-aos-delay="100">
                     <div class="itinerary-time">7:00pm</div>
                     <div class="itinerary-icon">
-                        <i class="fas fa-glass-cheers"></i>
+                        <i class="fas fa-door-open"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Recepción Salón</h3>
-                        <p>Bienvenida en el salón de la Finca La Fortaleza. Inicio de la celebración.</p>
+                        <h3>Recepción de Invitados</h3>
+                        <p>Bienvenida en la Finca y registro de hospedaje.</p>
                     </div>
                 </div>
 
@@ -1654,151 +1645,78 @@
                         <i class="fas fa-heart"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Entrada de los Novios</h3>
-                        <p>Entrada triunfal del nuevo y feliz matrimonio. ¡Que vivan los novios!</p>
+                        <h3>Que Vivan los Novios</h3>
+                        <p>Entrada del nuevo y feliz matrimonio.</p>
                     </div>
                 </div>
 
                 <div class="itinerary-item" data-aos="slide-right" data-aos-delay="500">
-                    <div class="itinerary-time">7:40pm</div>
+                    <div class="itinerary-time">7:45pm</div>
                     <div class="itinerary-icon">
                         <i class="fas fa-utensils"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Cena Amenizada con Mariachi</h3>
-                        <p>Exquisita cena amenizada por un conjunto de mariachis. ¡Si Señor!</p>
+                        <h3>Cena de Gala</h3>
+                        <p>Exquisita cena de tres tiempos diseñada especialmente para esta ocasión tan importante.</p>
                     </div>
                 </div>
 
                 <div class="itinerary-item" data-aos="slide-right" data-aos-delay="700">
-                    <div class="itinerary-time">8:40pm</div>
+                    <div class="itinerary-time">8:00pm</div>
                     <div class="itinerary-icon">
-                        <i class="fas fa-glass-cheers"></i>
+                        <i class="fas fa-music"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Brindis</h3>
-                        <p>Brindis especial por los novios y su nueva vida juntos.</p>
+                        <h3>Mariachi</h3>
+                        <p>Cena amenizada por un conjunto de Mariachis ¡Si Señor!</p>
                     </div>
                 </div>
                 
                 <div class="itinerary-item" data-aos="slide-left" data-aos-delay="400">
-                    <div class="itinerary-time">8:50pm</div>
+                    <div class="itinerary-time">9:00pm</div>
                     <div class="itinerary-icon">
-                        <i class="fas fa-music"></i>
+                        <i class="fas fa-glass-cheers"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Primer Baile Novios</h3>
-                        <p>El primer baile como esposos. Un momento mágico e inolvidable.</p>
+                        <h3>Cóctel de Celebración</h3>
+                        <p>Brindis especial, aperitivos gourmet y traslado al salón de recepción.</p>
                     </div>
                 </div>
 
                 <div class="itinerary-item" data-aos="slide-right" data-aos-delay="700">
-                    <div class="itinerary-time">9:00pm</div>
+                    <div class="itinerary-time">9:15pm</div>
                     <div class="itinerary-icon">
                         <i class="fas fa-music"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>¡Hora de Bailar!</h3>
-                        <p>Apertura de la pista de baile. ¡Que comience la gran celebración!</p>
+                        <h3>Primer Vals y Baile</h3>
+                        <p>Primer baile como esposos seguido de la apertura de la pista. ¡Que comience la celebración!</p>
                     </div>
                 </div>
                 
 
 
                 <div class="itinerary-item" data-aos="slide-left" data-aos-delay="600">
-                    <div class="itinerary-time">11:00pm</div>
+                    <div class="itinerary-time">21:00</div>
                     <div class="itinerary-icon">
                         <i class="fas fa-birthday-cake"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>Pastel</h3>
-                        <p>Momento especial y simbólico del corte del pastel de bodas.</p>
+                        <h3>Corte del Pastel</h3>
+                        <p>Momento especial y simbólico del corte del pastel de bodas y brindis de los novios.</p>
                     </div>
                 </div>
                 
                 
                 
                 <div class="itinerary-item" data-aos="slide-left" data-aos-delay="800">
-                    <div class="itinerary-time">11:30pm</div>
+                    <div class="itinerary-time">02:00</div>
                     <div class="itinerary-icon">
-                        <i class="fas fa-glass-cheers"></i>
+                        <i class="fas fa-heart"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>¡Que Continue la Fiesta!</h3>
-                        <p>La celebración continúa hasta altas horas. ¡Sigamos bailando y celebrando!</p>
-                    </div>
-                </div>
-                
-                <div class="itinerary-item" data-aos="slide-right" data-aos-delay="900">
-                    <div class="itinerary-time">1:00am</div>
-                    <div class="itinerary-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <div class="itinerary-details">
-                        <h3>Torna Boda</h3>
-                        <p>Antojitos mexicanos, chilaquiles y café para reponer energías. Perfecto para los que tienen hambre después de tanto bailar.</p>
-                    </div>
-                </div>
-                
-                <div class="itinerary-item" data-aos="slide-left" data-aos-delay="1000">
-                    <div class="itinerary-time">2:30am</div>
-                    <div class="itinerary-icon">
-                        <i class="fas fa-moon"></i>
-                    </div>
-                    <div class="itinerary-details">
-                        <h3>Fin del Evento / After en Habitaciones o Jardín</h3>
-                        <p>Final oficial del evento. Los que gusten pueden continuar la plática en las habitaciones o jardín.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Sunday Program Section -->
-            <div class="container" style="margin-top: 80px;">
-                <h2 class="section-title" data-aos="fade-up" style="color: var(--wine-red); margin-bottom: 55px;">Programa del Domingo</h2>
-                <div class="itinerary-timeline">
-                    
-                    <div class="itinerary-item" data-aos="slide-left" data-aos-delay="100">
-                        <div class="itinerary-time">7:00am</div>
-                        <div class="itinerary-icon">
-                            <i class="fas fa-swimming-pool"></i>
-                        </div>
-                        <div class="itinerary-details">
-                            <h3>Alberca Abierta</h3>
-                            <p>Disfruta de un chapuzón matutino en la alberca. Perfecta para relajarse y recuperarse después de la celebración de anoche.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="itinerary-item" data-aos="slide-right" data-aos-delay="200">
-                        <div class="itinerary-time">10:00am</div>
-                        <div class="itinerary-icon">
-                            <i class="fas fa-coffee"></i>
-                        </div>
-                        <div class="itinerary-details">
-                            <h3>Desayuno</h3>
-                            <p>Delicioso desayuno para reponer energías. Un momento especial para compartir anécdotas de la boda con familia y amigos.</p>
-                        </div>
-                    </div>
-
-                    <div class="itinerary-item" data-aos="slide-left" data-aos-delay="300">
-                        <div class="itinerary-time">11:00am</div>
-                        <div class="itinerary-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <div class="itinerary-details">
-                            <h3>Premio a los Ganadores</h3>
-                            <p>Entrega de premios y reconocimientos especiales. ¡Celebremos a los destacados de la noche!</p>
-                        </div>
-                    </div>
-                    
-                    <div class="itinerary-item" data-aos="slide-right" data-aos-delay="400">
-                        <div class="itinerary-time">1:00pm</div>
-                        <div class="itinerary-icon">
-                            <i class="fas fa-suitcase-rolling"></i>
-                        </div>
-                        <div class="itinerary-details">
-                            <h3>Check-out y Despedida</h3>
-                            <p>Momento de despedida final. Gracias por acompañarnos en este fin de semana tan especial e inolvidable.</p>
-                        </div>
+                        <h3>Despedida Especial</h3>
+                        <p>Cierre de la celebración con agradecimientos. ¡Gracias por hacer de este día algo inolvidable!</p>
                     </div>
                 </div>
             </div>
