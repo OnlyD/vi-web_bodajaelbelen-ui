@@ -577,6 +577,53 @@
             filter: brightness(1.1);
         }
 
+        /* Enhanced image protection */
+        .gallery-image {
+            pointer-events: auto;
+            position: relative;
+        }
+
+        /* Image protection overlay */
+        .gallery-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Disable context menu on gallery items */
+        .gallery-item {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            pointer-events: auto;
+        }
+
+        /* Screenshot protection for screen readers and print */
+        @media print {
+            .gallery-image,
+            .gallery-item {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+            }
+        }
+
+        /* Additional protection for mobile devices */
+        .gallery-image,
+        .gallery-item {
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
         /* Lightbox Modal */
         .lightbox {
             display: none;
@@ -2602,6 +2649,131 @@
                 }, index * 200);
             });
         });
+
+        // Enhanced Image Protection System
+        (function() {
+            // Disable right-click context menu on images and gallery items
+            document.addEventListener('contextmenu', function(e) {
+                if (e.target.classList.contains('gallery-image') || 
+                    e.target.closest('.gallery-item') || 
+                    e.target.closest('.gallery-section')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            });
+
+            // Disable drag and drop on images
+            document.addEventListener('dragstart', function(e) {
+                if (e.target.classList.contains('gallery-image') || 
+                    e.target.closest('.gallery-item')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // Disable touch callout on mobile devices
+            document.addEventListener('touchstart', function(e) {
+                if (e.target.classList.contains('gallery-image') || 
+                    e.target.closest('.gallery-item')) {
+                    e.target.style.webkitTouchCallout = 'none';
+                    e.target.style.webkitUserSelect = 'none';
+                }
+            });
+
+            // Enhanced keyboard protection
+            document.addEventListener('keydown', function(e) {
+                // Disable F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                    (e.ctrlKey && e.key === 'u') ||
+                    (e.ctrlKey && e.key === 'U') ||
+                    (e.ctrlKey && e.key === 's') ||
+                    (e.ctrlKey && e.key === 'S') ||
+                    (e.ctrlKey && e.shiftKey && e.key === 'C')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            });
+
+            // Enhanced screenshot protection
+            let screenshotAttempt = false;
+            document.addEventListener('keyup', function(e) {
+                if (e.key === 'PrintScreen') {
+                    screenshotAttempt = true;
+                    // Clear clipboard
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText('');
+                    }
+                    // Hide content temporarily
+                    document.body.style.visibility = 'hidden';
+                    setTimeout(() => {
+                        document.body.style.visibility = 'visible';
+                    }, 300);
+                }
+            });
+
+            // Detect when user switches tabs (potential screenshot)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && screenshotAttempt) {
+                    // Hide gallery content
+                    document.querySelectorAll('.gallery-image').forEach(img => {
+                        img.style.opacity = '0';
+                    });
+                } else if (!document.hidden) {
+                    // Restore gallery content
+                    setTimeout(() => {
+                        document.querySelectorAll('.gallery-image').forEach(img => {
+                            img.style.opacity = '1';
+                        });
+                        screenshotAttempt = false;
+                    }, 100);
+                }
+            });
+
+            // Disable selection on gallery items
+            document.querySelectorAll('.gallery-item, .gallery-image').forEach(element => {
+                element.addEventListener('selectstart', function(e) {
+                    e.preventDefault();
+                    return false;
+                });
+
+                element.addEventListener('mousedown', function(e) {
+                    if (e.button === 2) { // Right mouse button
+                        e.preventDefault();
+                        return false;
+                    }
+                });
+            });
+
+            // Protection against inspect element
+            let devtools = {
+                open: false,
+                orientation: null
+            };
+            
+            const threshold = 160;
+            setInterval(() => {
+                if (window.outerHeight - window.innerHeight > threshold || 
+                    window.outerWidth - window.innerWidth > threshold) {
+                    if (!devtools.open) {
+                        devtools.open = true;
+                        document.querySelectorAll('.gallery-image').forEach(img => {
+                            img.style.filter = 'blur(20px)';
+                        });
+                    }
+                } else {
+                    if (devtools.open) {
+                        devtools.open = false;
+                        document.querySelectorAll('.gallery-image').forEach(img => {
+                            img.style.filter = 'none';
+                        });
+                    }
+                }
+            }, 500);
+
+        })();
     </script>
 </body>
 </html>
