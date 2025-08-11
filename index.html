@@ -2694,12 +2694,13 @@
             });
         });
 
-        // Enhanced Image Protection System with Mobile Screenshot Prevention
+        // Refined Image Protection System - Less Aggressive
         (function() {
             const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             const protectionOverlay = document.getElementById('screenshotProtection');
             let isProtectionActive = false;
             let screenshotAttempt = false;
+            let lastActivationTime = 0;
             
             // Disable right-click context menu on images and gallery items
             document.addEventListener('contextmenu', function(e) {
@@ -2721,66 +2722,40 @@
                 }
             });
 
-            // Enhanced mobile touch protection
+            // Basic mobile touch protection (no aggressive detection)
             document.addEventListener('touchstart', function(e) {
                 if (e.target.classList.contains('gallery-image') || 
                     e.target.closest('.gallery-item')) {
                     e.target.style.webkitTouchCallout = 'none';
                     e.target.style.webkitUserSelect = 'none';
-                    e.target.style.touchAction = 'none';
-                    
-                    // Detect potential screenshot gestures on mobile
-                    if (isMobile && e.touches.length >= 2) {
-                        activateProtection();
-                    }
+                    e.target.style.touchAction = 'manipulation';
                 }
             });
 
-            // Mobile gesture detection for screenshot attempts
-            let touchStartTime = 0;
-            let touchCount = 0;
-            
-            document.addEventListener('touchstart', function(e) {
-                touchStartTime = Date.now();
-                touchCount = e.touches.length;
-                
-                // Detect multi-touch screenshot gestures
-                if (touchCount >= 2 && isMobile) {
-                    activateProtection();
-                }
-            });
-
-            document.addEventListener('touchend', function(e) {
-                const touchDuration = Date.now() - touchStartTime;
-                
-                // Detect quick multi-touch (potential screenshot)
-                if (touchCount >= 2 && touchDuration < 1000 && isMobile) {
-                    activateProtection();
-                }
-            });
-
-            // Enhanced keyboard protection
+            // Only detect specific screenshot key combinations
             document.addEventListener('keydown', function(e) {
-                // Disable F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S, Print Screen combinations
-                if (e.key === 'F12' || 
-                    e.key === 'PrintScreen' ||
-                    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-                    (e.ctrlKey && e.key === 'u') ||
-                    (e.ctrlKey && e.key === 'U') ||
-                    (e.ctrlKey && e.key === 's') ||
-                    (e.ctrlKey && e.key === 'S') ||
-                    (e.ctrlKey && e.shiftKey && e.key === 'C') ||
-                    (e.metaKey && e.shiftKey && e.key === '3') || // Mac screenshot
-                    (e.metaKey && e.shiftKey && e.key === '4') || // Mac screenshot
-                    (e.metaKey && e.shiftKey && e.key === '5')) { // Mac screenshot
+                // Only block actual screenshot keys, not developer tools
+                if (e.key === 'PrintScreen' ||
+                    (e.metaKey && e.shiftKey && e.key === '3') || // Mac screenshot full
+                    (e.metaKey && e.shiftKey && e.key === '4') || // Mac screenshot selection
+                    (e.metaKey && e.shiftKey && e.key === '5')) { // Mac screenshot window
                     e.preventDefault();
                     e.stopPropagation();
                     activateProtection();
                     return false;
                 }
+                
+                // Block F12 and inspect element shortcuts (less intrusive)
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                    (e.ctrlKey && e.key === 'u') ||
+                    (e.ctrlKey && e.key === 'U')) {
+                    e.preventDefault();
+                    return false;
+                }
             });
 
-            // Enhanced screenshot protection
+            // Enhanced screenshot detection only for actual print screen
             document.addEventListener('keyup', function(e) {
                 if (e.key === 'PrintScreen' || 
                     (e.metaKey && e.shiftKey && (e.key === '3' || e.key === '4' || e.key === '5'))) {
@@ -2791,25 +2766,40 @@
                     if (navigator.clipboard) {
                         navigator.clipboard.writeText('').catch(() => {});
                     }
+                    
+                    // Auto-restore after 2 seconds
+                    setTimeout(() => {
+                        deactivateProtection();
+                        screenshotAttempt = false;
+                    }, 2000);
                 }
             });
 
-            // Advanced mobile screenshot detection
+            // Mobile screenshot detection (only volume+power, more specific)
             if (isMobile) {
-                // Detect volume button + power button combinations (Android)
                 let volumePressed = false;
                 let powerPressed = false;
+                let pressStartTime = 0;
                 
                 document.addEventListener('keydown', function(e) {
+                    const now = Date.now();
+                    
                     if (e.key === 'VolumeDown' || e.key === 'VolumeUp') {
                         volumePressed = true;
+                        pressStartTime = now;
                     }
                     if (e.key === 'Power') {
                         powerPressed = true;
+                        if (!pressStartTime) pressStartTime = now;
                     }
                     
-                    if (volumePressed && powerPressed) {
+                    // Only activate if both pressed within 200ms of each other
+                    if (volumePressed && powerPressed && (now - pressStartTime < 200)) {
                         activateProtection();
+                        setTimeout(() => {
+                            deactivateProtection();
+                            screenshotAttempt = false;
+                        }, 2000);
                     }
                 });
 
@@ -2823,55 +2813,43 @@
                 });
             }
 
-            // Aggressive visibility change detection
+            // Less aggressive visibility detection
+            let hiddenStartTime = 0;
             document.addEventListener('visibilitychange', function() {
                 if (document.hidden) {
-                    // Hide content immediately when tab/app becomes hidden
-                    activateProtection();
-                    screenshotAttempt = true;
-                } else if (!document.hidden && screenshotAttempt) {
-                    // Delayed restoration when returning to tab
-                    setTimeout(() => {
-                        deactivateProtection();
-                        screenshotAttempt = false;
-                    }, 500);
+                    hiddenStartTime = Date.now();
+                } else if (!document.hidden && hiddenStartTime) {
+                    const hiddenDuration = Date.now() - hiddenStartTime;
+                    
+                    // Only protect if hidden for a very short time (potential screenshot app switch)
+                    if (hiddenDuration < 1000 && hiddenDuration > 50) {
+                        activateProtection();
+                        setTimeout(() => {
+                            deactivateProtection();
+                        }, 1500);
+                    }
+                    hiddenStartTime = 0;
                 }
             });
 
-            // Detect page focus loss (potential screenshot)
-            window.addEventListener('blur', function() {
-                activateProtection();
-            });
-
-            window.addEventListener('focus', function() {
-                setTimeout(() => {
-                    if (!screenshotAttempt) {
-                        deactivateProtection();
-                    }
-                }, 300);
-            });
-
-            // Protection activation function
+            // Protection activation function with cooldown
             function activateProtection() {
-                if (isProtectionActive) return;
+                const now = Date.now();
+                if (isProtectionActive || (now - lastActivationTime < 3000)) return;
+                
                 isProtectionActive = true;
+                lastActivationTime = now;
                 
                 // Show black overlay
                 protectionOverlay.style.display = 'flex';
                 
-                // Hide/blur all gallery images
+                // Hide gallery images with transition
                 document.querySelectorAll('.gallery-image').forEach(img => {
+                    img.style.transition = 'all 0.3s ease';
                     img.style.opacity = '0';
-                    img.style.filter = 'blur(50px)';
-                    img.style.transform = 'scale(0.1)';
+                    img.style.filter = 'blur(20px)';
                 });
                 
-                // Hide entire gallery section
-                const gallerySection = document.querySelector('.gallery-section');
-                if (gallerySection) {
-                    gallerySection.style.visibility = 'hidden';
-                }
-
                 console.log('🚨 Screenshot protection activated');
             }
 
@@ -2880,23 +2858,17 @@
                 if (!isProtectionActive) return;
                 isProtectionActive = false;
                 
-                // Hide overlay
+                // Hide overlay with fade
                 protectionOverlay.style.display = 'none';
                 
-                // Restore gallery images gradually
+                // Restore gallery images
                 document.querySelectorAll('.gallery-image').forEach((img, index) => {
                     setTimeout(() => {
                         img.style.opacity = '1';
                         img.style.filter = 'none';
-                        img.style.transform = 'scale(1)';
-                    }, index * 100);
+                        img.style.transition = 'all 0.5s ease';
+                    }, index * 50);
                 });
-                
-                // Restore gallery section
-                const gallerySection = document.querySelector('.gallery-section');
-                if (gallerySection) {
-                    gallerySection.style.visibility = 'visible';
-                }
             }
 
             // Disable selection on gallery items
@@ -2916,9 +2888,9 @@
                 });
             });
 
-            // Developer tools detection (enhanced)
+            // More conservative developer tools detection
             let devtools = { open: false };
-            const threshold = 160;
+            const threshold = 200; // Higher threshold
             
             setInterval(() => {
                 const widthThreshold = window.outerWidth - window.innerWidth > threshold;
@@ -2927,27 +2899,20 @@
                 if (widthThreshold || heightThreshold) {
                     if (!devtools.open) {
                         devtools.open = true;
-                        activateProtection();
+                        // Just blur images, don't activate full protection
+                        document.querySelectorAll('.gallery-image').forEach(img => {
+                            img.style.filter = 'blur(10px)';
+                        });
                     }
                 } else {
                     if (devtools.open) {
                         devtools.open = false;
-                        if (!screenshotAttempt) {
-                            deactivateProtection();
-                        }
+                        document.querySelectorAll('.gallery-image').forEach(img => {
+                            img.style.filter = 'none';
+                        });
                     }
                 }
-            }, 100); // More frequent checking
-
-            // Screen recording detection (experimental)
-            if ('mediaDevices' in navigator && 'getDisplayMedia' in navigator.mediaDevices) {
-                const originalGetDisplayMedia = navigator.mediaDevices.getDisplayMedia;
-                navigator.mediaDevices.getDisplayMedia = function() {
-                    activateProtection();
-                    console.log('🚨 Screen recording attempt detected');
-                    return Promise.reject(new Error('Screen recording blocked'));
-                };
-            }
+            }, 1000); // Less frequent checking
 
         })();
     </script>
