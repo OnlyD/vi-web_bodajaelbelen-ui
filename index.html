@@ -486,72 +486,22 @@
         }
 
         .gallery-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 900px;
             margin: 0 auto;
-            align-items: center;
-        }
-
-        .gallery-row {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            width: 100%;
-        }
-
-        .gallery-row:nth-child(1) .gallery-item {
-            width: calc(20% - 12px); /* 5 imágenes en la primera fila */
-        }
-
-        .gallery-row:nth-child(2) .gallery-item {
-            width: calc(25% - 11.25px); /* 4 imágenes en la segunda fila */
-        }
-
-        .gallery-row:nth-child(3) .gallery-item {
-            width: calc(33.333% - 10px); /* 3 imágenes en la tercera fila */
-        }
-
-        .gallery-row:nth-child(4) .gallery-item {
-            width: calc(40% - 0px); /* 1 imagen en la cuarta fila */
-        }
-        
-        /* Responsive design para la galería */
-        @media (max-width: 768px) {
-            .gallery-row:nth-child(1) .gallery-item {
-                width: calc(33.333% - 10px); /* 3 imágenes en móviles */
-            }
-            
-            .gallery-row:nth-child(2) .gallery-item {
-                width: calc(50% - 7.5px); /* 2 imágenes */
-            }
-            
-            .gallery-row:nth-child(3) .gallery-item {
-                width: calc(100% - 0px); /* 1 imagen por fila en la tercera */
-            }
-            
-            .gallery-row:nth-child(4) .gallery-item {
-                width: calc(100% - 0px); /* 1 imagen */
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .gallery-row .gallery-item {
-                width: calc(50% - 7.5px); /* 2 imágenes por fila máximo en móviles pequeños */
-            }
         }
 
         .gallery-item {
             position: relative;
-            border-radius: 15px;
+            border-radius: 25px;
             overflow: hidden;
             aspect-ratio: 1;
             background: linear-gradient(45deg, var(--light-rose), var(--rose-gold));
             cursor: pointer;
             transition: all 0.4s ease;
-            box-shadow: 0 8px 20px rgba(114, 47, 55, 0.3);
-            flex-shrink: 0;
+            box-shadow: 0 20px 40px rgba(114, 47, 55, 0.1);
         }
 
         .gallery-item:hover {
@@ -671,24 +621,6 @@
             -moz-user-drag: none;
             -o-user-drag: none;
             user-drag: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        /* Invisible watermark overlay on lightbox */
-        .lightbox::after {
-            content: 'Belén & Jael Wedding';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 6rem;
-            color: rgba(255, 255, 255, 0.02);
-            pointer-events: none;
-            z-index: 10001;
-            font-weight: bold;
-            white-space: nowrap;
-            user-select: none;
-            -webkit-user-select: none;
         }
 
         .lightbox-close {
@@ -1884,59 +1816,44 @@
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Momentos Especiales</h2>
             <div class="gallery-grid">
-                <!-- Primera fila: 5 imágenes -->
-                <div class="gallery-row">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/1.jpg" alt="Momento especial 1" class="gallery-image" data-index="0">
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="150">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/2.jpg" alt="Momento especial 2" class="gallery-image" data-index="1">
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/3.jpg" alt="Momento especial 3" class="gallery-image" data-index="2">
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="250">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/4.jpg" alt="Momento especial 4" class="gallery-image" data-index="3">
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/5.jpg" alt="Momento especial 5" class="gallery-image" data-index="4">
-                    </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/1.jpg" alt="Momento especial 1" class="gallery-image" data-index="0">
                 </div>
-                
-                <!-- Segunda fila: 4 imágenes -->
-                <div class="gallery-row">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/6.jpg" alt="Momento especial 6" class="gallery-image" data-index="5">
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="450">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/7.jpg" alt="Momento especial 7" class="gallery-image" data-index="6">
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/8.jpg" alt="Momento especial 8" class="gallery-image" data-index="7">
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="550">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/9.jpg" alt="Momento especial 9" class="gallery-image" data-index="8">
-                    </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/2.jpg" alt="Momento especial 2" class="gallery-image" data-index="1">
                 </div>
-                
-                <!-- Tercera fila: 3 imágenes -->
-                <div class="gallery-row">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="600">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/10.jpg" alt="Momento especial 10" class="gallery-image" data-index="9">
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="650">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/11.JPG" alt="Momento especial 11" class="gallery-image" data-index="10">
-                    </div>
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="700">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/12.jpg" alt="Momento especial 12" class="gallery-image" data-index="11">
-                    </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/3.jpg" alt="Momento especial 3" class="gallery-image" data-index="2">
                 </div>
-                
-                <!-- Cuarta fila: 1 imagen (imagen restante) -->
-                <div class="gallery-row">
-                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="750">
-                        <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/13.JPG" alt="Momento especial 13" class="gallery-image" data-index="12">
-                    </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/4.jpg" alt="Momento especial 4" class="gallery-image" data-index="3">
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/5.jpg" alt="Momento especial 5" class="gallery-image" data-index="4">
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="600">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/6.jpg" alt="Momento especial 6" class="gallery-image" data-index="5">
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="700">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/7.jpg" alt="Momento especial 7" class="gallery-image" data-index="6">
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="800">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/8.jpg" alt="Momento especial 8" class="gallery-image" data-index="7">
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="900">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/9.jpg" alt="Momento especial 9" class="gallery-image" data-index="8">
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="1000">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/10.jpg" alt="Momento especial 10" class="gallery-image" data-index="9">
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="1100">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/11.JPG" alt="Momento especial 11" class="gallery-image" data-index="10">
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="1200">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/12.jpg" alt="Momento especial 12" class="gallery-image" data-index="11">
+                </div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="1300">
+                    <img src="https://raw.githubusercontent.com/OnlyD/vi-web_bodajaelbelen-ui/main/imagenes/13.JPG" alt="Momento especial 13" class="gallery-image" data-index="12">
                 </div>
             </div>
 
@@ -2613,33 +2530,12 @@
             }
         });
         
-        // Enhanced keyboard navigation and protection
+        // Keyboard navigation and protection
         document.addEventListener('keydown', function(e) {
             if (lightbox.classList.contains('active')) {
-                // Prevent common save and copy shortcuts
-                if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || 
-                    e.key === 'a' || e.key === 'A' || e.key === 'c' || e.key === 'C' || 
-                    e.key === 'v' || e.key === 'V' || e.key === 'x' || e.key === 'X')) {
+                // Prevent common save shortcuts
+                if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
                     e.preventDefault();
-                    return false;
-                }
-                
-                // Prevent F12 and DevTools shortcuts
-                if (e.key === 'F12' || 
-                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
-                    (e.ctrlKey && e.key === 'U')) {
-                    e.preventDefault();
-                    return false;
-                }
-                
-                // Prevent PrintScreen
-                if (e.key === 'PrintScreen') {
-                    e.preventDefault();
-                    // Temporarily hide the image
-                    lightboxImage.style.opacity = '0';
-                    setTimeout(() => {
-                        lightboxImage.style.opacity = '1';
-                    }, 200);
                     return false;
                 }
                 
@@ -2667,48 +2563,6 @@
             if (e.key === 'PrintScreen') {
                 alert('Screenshots are not allowed');
                 navigator.clipboard.writeText('');
-            }
-        });
-        
-        // Additional protection for lightbox images
-        lightbox.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            return false;
-        });
-        
-        // Prevent drag and drop on lightbox
-        lightbox.addEventListener('dragstart', function(e) {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-                return false;
-            }
-        });
-        
-        // Protection against print
-        window.addEventListener('beforeprint', function(e) {
-            if (lightbox.classList.contains('active')) {
-                e.preventDefault();
-                alert('Printing is not allowed for these images');
-                return false;
-            }
-        });
-        
-        // Detection de DevTools abierto (básico)
-        let devtools = {open: false, orientation: null};
-        setInterval(function() {
-            if (window.outerHeight - window.innerHeight > 160 && !devtools.open) {
-                devtools.open = true;
-                if (lightbox.classList.contains('active')) {
-                    closeLightbox();
-                }
-            }
-        }, 500);
-        
-        // Disable image selection globally
-        document.addEventListener('selectstart', function(e) {
-            if (e.target.tagName === 'IMG' && lightbox.classList.contains('active')) {
-                e.preventDefault();
-                return false;
             }
         });
 
