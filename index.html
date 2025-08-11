@@ -2775,309 +2775,74 @@
                 }
             });
 
-            // Advanced Mobile Screenshot Detection
+            // Conservative Mobile Screenshot Detection
             if (isMobile) {
-                let touchStartPositions = [];
-                let simultaneousTouches = 0;
-                let lastTouchTime = 0;
-                let vibrationDetected = false;
+                let touchStartTime = 0;
+                let touchCount = 0;
                 
-                // Gesture detection for screenshots (3-finger swipe, palm swipe)
+                // Only detect very specific screenshot gestures
                 document.addEventListener('touchstart', function(e) {
-                    simultaneousTouches = e.touches.length;
-                    lastTouchTime = Date.now();
-                    touchStartPositions = [];
+                    touchStartTime = Date.now();
+                    touchCount = e.touches.length;
                     
-                    for (let i = 0; i < e.touches.length; i++) {
-                        touchStartPositions.push({
-                            x: e.touches[i].clientX,
-                            y: e.touches[i].clientY
-                        });
-                    }
-                    
-                    // Detect 3+ finger touches (potential gesture screenshot)
-                    if (simultaneousTouches >= 3) {
+                    // Only detect 4+ finger touches (very specific, less common in normal use)
+                    if (touchCount >= 4) {
                         activateProtection();
                         setTimeout(() => {
                             deactivateProtection();
                         }, 2000);
                     }
-                    
-                    // Detect edge swipe gestures (Samsung, Xiaomi, etc.)
-                    if (simultaneousTouches === 1) {
-                        const touch = e.touches[0];
-                        const screenWidth = window.innerWidth;
-                        const screenHeight = window.innerHeight;
-                        
-                        // Edge swipe detection (swipe from edge)
-                        if (touch.clientX < 50 || touch.clientX > screenWidth - 50 ||
-                            touch.clientY < 50 || touch.clientY > screenHeight - 50) {
-                            
-                            // Monitor for quick swipe
-                            let swipeStartX = touch.clientX;
-                            let swipeStartY = touch.clientY;
-                            
-                            const handleMove = function(moveEvent) {
-                                const moveTouch = moveEvent.touches[0];
-                                if (!moveTouch) return;
-                                
-                                const deltaX = Math.abs(moveTouch.clientX - swipeStartX);
-                                const deltaY = Math.abs(moveTouch.clientY - swipeStartY);
-                                const swipeTime = Date.now() - lastTouchTime;
-                                
-                                // Fast diagonal swipe from edge (common screenshot gesture)
-                                if ((deltaX > 100 || deltaY > 100) && swipeTime < 500) {
-                                    activateProtection();
-                                    setTimeout(() => {
-                                        deactivateProtection();
-                                    }, 2000);
-                                }
-                                
-                                document.removeEventListener('touchmove', handleMove);
-                            };
-                            
-                            document.addEventListener('touchmove', handleMove);
-                        }
-                    }
                 });
                 
-                // Palm rejection and large touch area detection
+                // Very specific palm gesture detection (only for very large touches)
                 document.addEventListener('touchmove', function(e) {
                     if (e.touches.length >= 2) {
                         let totalArea = 0;
-                        let avgForce = 0;
-                        let forceCount = 0;
                         
                         for (let i = 0; i < e.touches.length; i++) {
                             const touch = e.touches[i];
-                            
-                            // Calculate touch area (approximate)
                             const radiusX = touch.radiusX || 10;
                             const radiusY = touch.radiusY || 10;
                             totalArea += Math.PI * radiusX * radiusY;
-                            
-                            // Check force if available
-                            if (touch.force !== undefined) {
-                                avgForce += touch.force;
-                                forceCount++;
-                            }
                         }
                         
-                        avgForce = forceCount > 0 ? avgForce / forceCount : 0;
-                        
-                        // Large area touch (palm) detection
-                        if (totalArea > 2000 || avgForce > 0.8) {
-                            activateProtection();
-                            setTimeout(() => {
-                                deactivateProtection();
-                            }, 2000);
-                        }
-                    }
-                });
-                
-                // Screen orientation change detection (rotation screenshots)
-                window.addEventListener('orientationchange', function() {
-                    // Brief protection during orientation change
-                    activateProtection();
-                    setTimeout(() => {
-                        deactivateProtection();
-                    }, 1000);
-                });
-                
-                // Device motion detection (shake for screenshot)
-                if (window.DeviceMotionEvent) {
-                    let lastShakeTime = 0;
-                    
-                    window.addEventListener('devicemotion', function(e) {
-                        const acceleration = e.accelerationIncludingGravity;
-                        if (!acceleration) return;
-                        
-                        const now = Date.now();
-                        const timeDiff = now - lastShakeTime;
-                        
-                        if (timeDiff > 100) { // Throttle detection
-                            const totalAcceleration = Math.abs(acceleration.x) + 
-                                                    Math.abs(acceleration.y) + 
-                                                    Math.abs(acceleration.z);
-                            
-                            // Detect significant shake/movement
-                            if (totalAcceleration > 25 && timeDiff > 500) {
-                                activateProtection();
-                                setTimeout(() => {
-                                    deactivateProtection();
-                                }, 1500);
-                                lastShakeTime = now;
-                            }
-                        }
-                    });
-                }
-                
-                // Vibration API hook (some screenshot apps trigger vibration)
-                if (navigator.vibrate) {
-                    const originalVibrate = navigator.vibrate;
-                    navigator.vibrate = function(pattern) {
-                        vibrationDetected = true;
-                        activateProtection();
-                        setTimeout(() => {
-                            deactivateProtection();
-                            vibrationDetected = false;
-                        }, 2000);
-                        return originalVibrate.call(navigator, pattern);
-                    };
-                }
-                
-                // AssistiveTouch and accessibility service detection
-                let assistiveTouchDetected = false;
-                
-                document.addEventListener('touchend', function(e) {
-                    const touchDuration = Date.now() - lastTouchTime;
-                    
-                    // Very quick taps might indicate assistive touch
-                    if (touchDuration < 50 && simultaneousTouches === 1) {
-                        const recentTaps = document.querySelector('[data-recent-taps]') || 
-                                         document.createElement('div');
-                        recentTaps.setAttribute('data-recent-taps', '1');
-                        document.body.appendChild(recentTaps);
-                        
-                        setTimeout(() => {
-                            if (recentTaps.parentNode) {
-                                recentTaps.parentNode.removeChild(recentTaps);
-                            }
-                        }, 1000);
-                        
-                        if (!assistiveTouchDetected) {
-                            assistiveTouchDetected = true;
-                            activateProtection();
-                            setTimeout(() => {
-                                deactivateProtection();
-                                assistiveTouchDetected = false;
-                            }, 2000);
-                        }
-                    }
-                });
-            }
-
-            // Enhanced mobile visibility and activity detection
-            let hiddenStartTime = 0;
-            let activityMonitor = null;
-            let lastActivityTime = Date.now();
-            
-            document.addEventListener('visibilitychange', function() {
-                if (document.hidden) {
-                    hiddenStartTime = Date.now();
-                    
-                    // On mobile, immediately activate protection when hidden
-                    if (isMobile) {
-                        activateProtection();
-                    }
-                } else if (!document.hidden && hiddenStartTime) {
-                    const hiddenDuration = Date.now() - hiddenStartTime;
-                    
-                    if (isMobile) {
-                        // On mobile, keep protection active for longer after returning
-                        setTimeout(() => {
-                            deactivateProtection();
-                        }, 3000);
-                    } else {
-                        // Desktop: only protect if hidden for a very short time
-                        if (hiddenDuration < 1000 && hiddenDuration > 50) {
+                        // Only activate for extremely large palm gestures (much higher threshold)
+                        if (totalArea > 5000) {
                             activateProtection();
                             setTimeout(() => {
                                 deactivateProtection();
                             }, 1500);
                         }
                     }
+                });
+            }
+
+            // Much more conservative visibility detection
+            let hiddenStartTime = 0;
+            
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    hiddenStartTime = Date.now();
+                } else if (!document.hidden && hiddenStartTime) {
+                    const hiddenDuration = Date.now() - hiddenStartTime;
+                    
+                    // Only protect for very quick switches (potential screenshots)
+                    // Increased threshold to avoid false positives
+                    if (hiddenDuration < 500 && hiddenDuration > 20) {
+                        activateProtection();
+                        setTimeout(() => {
+                            deactivateProtection();
+                        }, 1500);
+                    }
                     hiddenStartTime = 0;
                 }
             });
 
-            // Mobile-specific: Monitor for sudden activity pauses (screenshot attempts)
-            if (isMobile) {
-                // Track user activity
-                let activityEvents = ['touchstart', 'touchmove', 'touchend', 'scroll'];
-                
-                function resetActivityTimer() {
-                    lastActivityTime = Date.now();
-                    clearTimeout(activityMonitor);
-                    
-                    activityMonitor = setTimeout(() => {
-                        // If no activity for 2 seconds, activate protection briefly
-                        if (document.visibilityState === 'visible') {
-                            activateProtection();
-                            setTimeout(() => {
-                                deactivateProtection();
-                            }, 1000);
-                        }
-                    }, 2000);
-                }
-                
-                activityEvents.forEach(event => {
-                    document.addEventListener(event, resetActivityTimer, { passive: true });
-                });
-                
-                // Initial timer
-                resetActivityTimer();
-                
-                // Page lifecycle events (mobile browsers)
-                document.addEventListener('freeze', function() {
-                    activateProtection();
-                });
-                
-                document.addEventListener('resume', function() {
-                    setTimeout(() => {
-                        deactivateProtection();
-                    }, 2000);
-                });
-                
-                // Battery status monitoring (some screenshot methods affect battery reporting)
-                if (navigator.getBattery) {
-                    navigator.getBattery().then(function(battery) {
-                        let lastLevel = battery.level;
-                        
-                        battery.addEventListener('levelchange', function() {
-                            // Unusual battery level changes might indicate screenshot processing
-                            const levelDiff = Math.abs(battery.level - lastLevel);
-                            if (levelDiff > 0.01) { // 1% change is unusual for screenshots
-                                activateProtection();
-                                setTimeout(() => {
-                                    deactivateProtection();
-                                }, 1500);
-                            }
-                            lastLevel = battery.level;
-                        });
-                    });
-                }
-                
-                // Memory pressure monitoring
-                if (performance.memory) {
-                    let lastMemoryCheck = Date.now();
-                    let baselineMemory = performance.memory.usedJSHeapSize;
-                    
-                    setInterval(() => {
-                        const now = Date.now();
-                        if (now - lastMemoryCheck > 5000) { // Check every 5 seconds
-                            const currentMemory = performance.memory.usedJSHeapSize;
-                            const memorySpike = currentMemory - baselineMemory;
-                            
-                            // Large memory increase might indicate screenshot processing
-                            if (memorySpike > 10000000) { // 10MB spike
-                                activateProtection();
-                                setTimeout(() => {
-                                    deactivateProtection();
-                                }, 2000);
-                            }
-                            
-                            baselineMemory = currentMemory;
-                            lastMemoryCheck = now;
-                        }
-                    }, 5000);
-                }
-            }
-
-            // Protection activation function with cooldown
+            // Protection activation function with extended cooldown
             function activateProtection() {
                 const now = Date.now();
-                if (isProtectionActive || (now - lastActivationTime < 3000)) return;
+                // Extended cooldown to 10 seconds to prevent repeated false positives
+                if (isProtectionActive || (now - lastActivationTime < 10000)) return;
                 
                 isProtectionActive = true;
                 lastActivationTime = now;
