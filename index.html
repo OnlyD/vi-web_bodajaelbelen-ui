@@ -203,8 +203,8 @@
 
         .couple-names {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
-            font-weight: 400;
+            font-size: 3.52rem;
+            font-weight: 700;
             color: var(--wine-red);
             margin-bottom: 18px;
             text-shadow: 0 3px 6px rgba(114, 47, 55, 0.15);
@@ -290,7 +290,7 @@
 
         .countdown-title {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             color: var(--wine-red);
             margin-bottom: 35px;
             position: relative;
@@ -1659,29 +1659,121 @@
         }
 
         /* Responsive Design */
+        /* Hamburger Menu Styles (Mobile Only) */
+        .hamburger-menu {
+            display: none;
+        }
+
+        .hamburger-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 6px;
+            padding: 6px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(114, 47, 55, 0.15);
+            border: 1px solid rgba(232, 180, 184, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-icon:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+
+        .hamburger-lines {
+            width: 12px;
+            height: 1.5px;
+            background: var(--wine-red);
+            margin: 2.5px 0;
+            transition: all 0.3s ease;
+            border-radius: 1px;
+        }
+
+        .hamburger-icon.active .hamburger-lines:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        .hamburger-icon.active .hamburger-lines:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-icon.active .hamburger-lines:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            right: -150px;
+            width: 140px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--soft-white) 0%, var(--pearl-white) 100%);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding-top: 40px;
+            box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-nav-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-menu a {
+            display: block;
+            color: var(--wine-red);
+            text-decoration: none;
+            font-size: 0.55rem;
+            font-weight: 500;
+            padding: 8px 15px;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-left: 2px solid transparent;
+        }
+
+        .mobile-nav-menu a:hover {
+            background: rgba(232, 180, 184, 0.1);
+            border-left: 2px solid var(--rose-gold);
+            transform: translateX(5px);
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         @media (max-width: 768px) {
             .nav-menu {
-                position: fixed;
-                top: 15px;
-                left: 50%;
-                transform: translateX(-50%);
-                margin: 0;
-                text-align: center;
-                padding: 8px 15px;
-                max-width: calc(100vw - 30px);
-                box-sizing: border-box;
+                display: none;
             }
 
-            .nav-menu a {
-                margin: 0 8px;
-                font-size: 10px;
+            .hamburger-menu {
+                display: block;
             }
+        }
 
             .couple-names {
-                font-size: 2.5rem;
+                font-size: 2.75rem;
             }
 
-            .section-title {
+            .section-title,
+            .countdown-title {
                 font-size: 2.2rem;
             }
 
@@ -1800,14 +1892,15 @@
             }
 
             .couple-names {
-                font-size: 2.2rem;
+                font-size: 2.42rem;
             }
 
             .wedding-date {
                 font-size: 1.8rem;
             }
 
-            .section-title {
+            .section-title,
+            .countdown-title {
                 font-size: 1.8rem;
             }
 
@@ -1858,12 +1951,30 @@
     <!-- Navigation -->
     <nav class="nav-menu">
         <a href="#hero">Inicio</a>
-        <a href="#countdown">Countdown</a>
+        <a href="#countdown">CONTADOR</a>
         <a href="#story">Historia</a>
         <a href="#itinerary">Itinerario</a>
         <a href="#location">Ubicación</a>
-        <a href="#rsvp">RSVP</a>
+        <a href="#rsvp">CONFIRMA</a>
     </nav>
+
+    <!-- Mobile Hamburger Menu -->
+    <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMobileMenu()">
+            <div class="hamburger-lines"></div>
+            <div class="hamburger-lines"></div>
+            <div class="hamburger-lines"></div>
+        </div>
+        <div class="mobile-nav-overlay" onclick="closeMobileMenu()"></div>
+        <nav class="mobile-nav-menu">
+            <a href="#hero" onclick="closeMobileMenu()">Inicio</a>
+            <a href="#countdown" onclick="closeMobileMenu()">Contador</a>
+            <a href="#story" onclick="closeMobileMenu()">Historia</a>
+            <a href="#itinerary" onclick="closeMobileMenu()">Itinerario</a>
+            <a href="#location" onclick="closeMobileMenu()">Ubicación</a>
+            <a href="#rsvp" onclick="closeMobileMenu()">Confirma</a>
+        </nav>
+    </div>
 
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
@@ -1940,7 +2051,7 @@
                 <div class="story-item" data-aos="fade-left" data-aos-delay="200">
                     <div class="story-content">
                         <div class="story-date">Primera Cita</div>
-                        <p class="story-text">Tuvimos muchas primneras citas. Entre conversaciones que parecían no tener fin y risas que llenaban el aire, confirmamos lo que ya sabíamos: habíamos encontrado a nuestra alma gemela...</p>
+                        <p class="story-text">Tuvimos muchas primeras citas. Entre conversaciones que parecían no tener fin y risas que llenaban el aire, confirmamos lo que ya sabíamos: habíamos encontrado a nuestra alma gemela...</p>
                     </div>
                     <div class="story-icon">
                         <i class="fas fa-coffee"></i>
@@ -2097,7 +2208,7 @@
                     </div>
                     <div class="itinerary-details">
                         <h3>Cena Amenizada con Mariachi</h3>
-                        <p>Exquisita cena amenizada por un conjunto de mariachis. ¡Si Señor!</p>
+                        <p>Exquisita cena amenizada por un conjunto de mariachis. ¡Sí, Señor!</p>
                     </div>
                 </div>
 
@@ -2155,7 +2266,7 @@
                         <i class="fas fa-glass-cheers"></i>
                     </div>
                     <div class="itinerary-details">
-                        <h3>¡Que Continue la Fiesta!</h3>
+                        <h3>¡Que Continúe la Fiesta!</h3>
                         <p>La celebración continúa hasta altas horas. ¡Sigamos bailando y celebrando!</p>
                     </div>
                 </div>
@@ -2990,6 +3101,42 @@
             }, 1000); // Less frequent checking
 
         })();
+
+        // Mobile Hamburger Menu Functionality
+        function toggleMobileMenu() {
+            const hamburgerIcon = document.querySelector('.hamburger-icon');
+            const mobileNavMenu = document.querySelector('.mobile-nav-menu');
+            const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+            
+            hamburgerIcon.classList.toggle('active');
+            mobileNavMenu.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (mobileNavMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeMobileMenu() {
+            const hamburgerIcon = document.querySelector('.hamburger-icon');
+            const mobileNavMenu = document.querySelector('.mobile-nav-menu');
+            const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+            
+            hamburgerIcon.classList.remove('active');
+            mobileNavMenu.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close mobile menu on window resize to desktop size
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
     </script>
 </body>
 </html>
