@@ -554,6 +554,22 @@
             -moz-user-drag: none;
             -o-user-drag: none;
             user-drag: none;
+            display: block;
+            background: linear-gradient(135deg, var(--light-rose), var(--rose-gold));
+        }
+
+        .gallery-image::after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--wine-red);
+            opacity: 0.6;
         }
 
         .gallery-image:hover {
@@ -2464,6 +2480,20 @@
         
         // Gallery click functionality with image protection
         document.querySelectorAll('.gallery-image').forEach((img, index) => {
+            // Add error handling for images
+            img.addEventListener('error', function() {
+                console.log('Error loading image:', this.src);
+                this.style.background = 'linear-gradient(135deg, var(--light-rose), var(--rose-gold))';
+                this.style.display = 'flex';
+                this.style.alignItems = 'center';
+                this.style.justifyContent = 'center';
+                this.innerHTML = '<i class="fas fa-image" style="font-size: 2rem; color: var(--wine-red); opacity: 0.6;"></i>';
+            });
+            
+            img.addEventListener('load', function() {
+                console.log('Image loaded successfully:', this.src);
+            });
+
             img.addEventListener('click', function() {
                 openLightbox(index);
             });
