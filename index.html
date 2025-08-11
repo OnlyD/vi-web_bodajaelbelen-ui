@@ -31,6 +31,8 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         body {
@@ -39,12 +41,18 @@
             color: var(--text-dark);
             background: linear-gradient(135deg, var(--pearl-white) 0%, var(--cream) 100%);
             overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
+            width: 100%;
+            padding: 0 15px;
+            box-sizing: border-box;
         }
 
         /* Background Pattern */
@@ -129,8 +137,10 @@
             overflow: hidden;
             position: relative;
             max-width: 850px;
-            margin: 20px;
+            margin: 20px auto;
             border: 2px solid rgba(232, 180, 184, 0.2);
+            width: calc(100% - 40px);
+            box-sizing: border-box;
         }
 
         .header-decoration {
@@ -624,15 +634,72 @@
             outline: none;
         }
 
-        /* Enhanced mobile screenshot protection */
+        /* Mobile Layout Fixes & Screenshot Protection */
         @media screen and (max-width: 768px) {
+            /* Prevent horizontal scroll */
+            html, body {
+                width: 100vw;
+                max-width: 100vw;
+                overflow-x: hidden !important;
+                position: relative;
+            }
+            
+            /* Fix all containers */
+            * {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 10px;
+                margin: 0 auto;
+            }
+            
+            /* Fix invitation card */
+            .invitation-card {
+                width: calc(100% - 20px) !important;
+                margin: 10px auto !important;
+                max-width: calc(100vw - 20px) !important;
+            }
+            
+            /* Fix nav menu */
+            .nav-menu {
+                max-width: calc(100vw - 30px) !important;
+                box-sizing: border-box;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
+            }
+            
+            /* Fix all sections */
+            section {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+                box-sizing: border-box;
+            }
+            
+            /* Gallery specific fixes */
             .gallery-section {
+                width: 100%;
+                max-width: 100%;
+                padding: 60px 10px;
+                overflow-x: hidden;
+                box-sizing: border-box;
                 -webkit-touch-callout: none;
                 -webkit-user-select: none;
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;
                 -webkit-appearance: none;
+            }
+            
+            .gallery-grid {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
             }
             
             .gallery-image {
@@ -1594,14 +1661,15 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
-                position: relative;
-                top: auto;
-                left: auto;
-                transform: none;
-                margin: 15px auto;
+                position: fixed;
+                top: 15px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
                 text-align: center;
                 padding: 8px 15px;
-                max-width: 90%;
+                max-width: calc(100vw - 30px);
+                box-sizing: border-box;
             }
 
             .nav-menu a {
