@@ -145,17 +145,16 @@
 
         .header-decoration {
             height: 180px;
-            background: linear-gradient(135deg, var(--wine-red) 0%, var(--light-wine) 100%);
+            background: linear-gradient(rgba(114, 47, 55, 0.3), rgba(139, 58, 66, 0.3)), url('./imagenes/flores.png?v=123');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             position: relative;
             overflow: hidden;
         }
 
         .geometric-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><polygon points="30,10 50,50 10,50" fill="rgba(232,180,184,0.15)" transform="rotate(0 30 30)"/><polygon points="30,10 50,50 10,50" fill="rgba(232,180,184,0.1)" transform="rotate(120 30 30)"/><polygon points="30,10 50,50 10,50" fill="rgba(232,180,184,0.12)" transform="rotate(240 30 30)"/></svg>') repeat;
-            animation: rotatePattern 30s infinite linear;
+            display: none;
         }
 
         @keyframes rotatePattern {
@@ -173,14 +172,18 @@
             position: absolute;
             color: rgba(232, 180, 184, 0.4);
             font-size: 12px;
-            animation: floatUp 20s infinite linear;
         }
 
-        .floating-element:nth-child(1) { left: 15%; animation-delay: 0s; }
-        .floating-element:nth-child(2) { left: 35%; animation-delay: 3s; }
-        .floating-element:nth-child(3) { left: 55%; animation-delay: 6s; }
-        .floating-element:nth-child(4) { left: 75%; animation-delay: 9s; }
-        .floating-element:nth-child(5) { left: 85%; animation-delay: 12s; }
+        .floating-element:nth-child(1) { left: 12%; animation: floatUp 18s infinite linear; animation-delay: 0.5s; }
+        .floating-element:nth-child(2) { left: 78%; animation: floatUp 22s infinite linear; animation-delay: 4.2s; }
+        .floating-element:nth-child(3) { left: 45%; animation: floatUp 16s infinite linear; animation-delay: 1.8s; }
+        .floating-element:nth-child(4) { left: 65%; animation: floatUp 25s infinite linear; animation-delay: 7.3s; }
+        .floating-element:nth-child(5) { left: 25%; animation: floatUp 19s infinite linear; animation-delay: 3.1s; }
+        .floating-element:nth-child(6) { left: 85%; animation: floatUp 21s infinite linear; animation-delay: 5.7s; }
+        .floating-element:nth-child(7) { left: 35%; animation: floatUp 17s infinite linear; animation-delay: 2.4s; }
+        .floating-element:nth-child(8) { left: 55%; animation: floatUp 23s infinite linear; animation-delay: 6.8s; }
+        .floating-element:nth-child(9) { left: 15%; animation: floatUp 20s infinite linear; animation-delay: 8.9s; }
+        .floating-element:nth-child(10) { left: 72%; animation: floatUp 24s infinite linear; animation-delay: 1.2s; }
 
         @keyframes floatUp {
             0% { 
@@ -375,7 +378,7 @@
 
         .section-title {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
+            font-size: 35.2px;
             color: var(--wine-red);
             text-align: center;
             margin-bottom: 55px;
@@ -1303,7 +1306,7 @@
 
         .dress-code-title {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
+            font-size: 35.2px;
             color: var(--wine-red);
             margin-bottom: 40px;
         }
@@ -1380,7 +1383,7 @@
 
         .rsvp-title {
             font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
+            font-size: 35.2px;
             margin-bottom: 40px;
             color: var(--light-rose);
         }
@@ -1488,7 +1491,7 @@
 
         .thanks-title {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
+            font-size: 35.2px;
             color: var(--wine-red);
             text-align: center;
             margin-bottom: 40px;
@@ -1774,7 +1777,7 @@
 
             .section-title,
             .countdown-title {
-                font-size: 2.2rem;
+                font-size: 35.2px;
             }
 
             .section-title::before,
@@ -1901,7 +1904,7 @@
 
             .section-title,
             .countdown-title {
-                font-size: 1.8rem;
+                font-size: 35.2px;
             }
 
             .countdown-item {
@@ -1988,6 +1991,11 @@
                         <i class="fas fa-heart floating-element"></i>
                         <i class="fas fa-crown floating-element"></i>
                         <i class="fas fa-sparkles floating-element"></i>
+                        <i class="fas fa-plane floating-element"></i>
+                        <i class="fas fa-gamepad floating-element"></i>
+                        <i class="fas fa-gem floating-element"></i>
+                        <i class="fas fa-star floating-element"></i>
+                        <i class="fas fa-heart floating-element"></i>
                     </div>
                 </div>
                 
@@ -2455,7 +2463,6 @@
                     <div class="registry-icon">
                         <i class="fas fa-gift"></i>
                     </div>
-                    <h3 class="registry-title">Mesa de Regalos</h3>
                     <p class="registry-details">
                         Tu presencia es el mejor regalo que podemos recibir, pero si deseas tener un detalle con nosotros lo agradeceremos y recibiremos de corazón, este nos será de gran ayuda para comenzar esta nueva etapa.<br><br>
                         Ya sea un obsequio material, económico o detalle, tendremos una mesa de regalos en el salón.
@@ -2556,7 +2563,7 @@
                     </p>
                     
                     <p class="thanks-paragraph">
-                        Gracias a nuestros hermanos, sobrinos y familia por estar y ser parte fundamental en nuestras vidas, por compartir, celebrar y por ser parte de nuestra historia.
+                        Gracias a nuestros hermanos, sobrinos y familia por estar siempre presentes, ser parte fundamental en nuestras vidas, por compartir, celebrar y por formar parte de nuestra historia.
                     </p>
                     
                     <p class="thanks-paragraph">
