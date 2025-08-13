@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Preview Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .whatsapp-preview {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #722f37 0%, #8b3a42 50%, #722f37 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Área segura centrada para WhatsApp (630x630px) */
+        .safe-area {
+            width: 630px;
+            height: 630px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .couples-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 72px;
+            color: #daa520;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.1;
+        }
+        
+        .wedding-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            color: #f8f8f8;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .date-location {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            color: #e8b4b8;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .invitation-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: #f0f0f0;
+            max-width: 500px;
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        /* Elementos decorativos */
+        .decorative-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #daa520;
+            font-size: 24px;
+            opacity: 0.6;
+        }
+        
+        .heart1 { top: 15%; left: 10%; }
+        .heart2 { top: 20%; right: 15%; }
+        .heart3 { bottom: 25%; left: 8%; }
+        .heart4 { bottom: 15%; right: 12%; }
+        
+        .rings {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            font-size: 36px;
+            color: #daa520;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="whatsapp-preview">
+        <div class="decorative-elements">
+            <div class="heart heart1">💕</div>
+            <div class="heart heart2">💍</div>
+            <div class="heart heart3">💖</div>
+            <div class="heart heart4">👰</div>
+            <div class="rings">💍💞</div>
+        </div>
+        
+        <div class="safe-area">
+            <div class="couples-names">Belén & Jael</div>
+            <div class="wedding-text">¡Nos Casamos!</div>
+            <div class="date-location">
+                📅 [Fecha de la Boda]<br>
+                📍 [Lugar de la Ceremonia]
+            </div>
+            <div class="invitation-text">
+                Te invitamos a celebrar nuestro amor<br>
+                en este día tan especial 💕
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-capture después de cargar
+        setTimeout(() => {
+            console.log('Imagen lista para captura de pantalla');
+            console.log('Usar: 1200x630px exactamente');
+            console.log('Área central segura: 630x630px');
+        }, 1000);
+    </script>
+</body>
+</html>
