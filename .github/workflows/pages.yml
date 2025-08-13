@@ -1,0 +1,53 @@
+# .github/workflows/deploy.yml
+name: Deploy Boda Belen y Jael to AWS
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Setup SAM CLI
+        uses: aws-actions/setup-sam@v2
+        with:
+          use-installer: true
+
+      - name: Deploy Infrastructure with SAM
+        run: |
+          sam build
+          sam deploy --stack-name bodabelenjael-website --capabilities CAPABILITY_NAMED_IAM --region us-east-1 --no-confirm-changeset --no-fail-on-empty-changeset
+
+      - name: Get Stack Outputs
+        id: stack-outputs
+        run: |
+          BUCKET_NAME=$(aws cloudformation describe-stacks --stack-name bodabelenjael-website --query 'Stacks[0].Outputs[?OutputKey==`WebsiteBucketName`].OutputValue' --output text)
+          DISTRIBUTION_ID=$(aws cloudformation describe-stacks --stack-name bodabelenjael-website --query 'Stacks[0].Outputs[?OutputKey==`CloudFrontDistributionId`].OutputValue' --output text)
+          echo "bucket-name=$BUCKET_NAME" >> $GITHUB_OUTPUT
+          echo "distribution-id=$DISTRIBUTION_ID" >> $GITHUB_OUTPUT
+
+      - name: Deploy to S3
+        run: |
+          aws s3 sync . s3://${{ steps.stack-outputs.outputs.bucket-name }} --delete --exclude ".git/*" --exclude ".github/*" --exclude "template.yaml" --exclude "README.md" --exclude "*.md"
+
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ steps.stack-outputs.outputs.distribution-id }} --paths "/*"
