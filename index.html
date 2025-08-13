@@ -892,13 +892,13 @@
         .itinerary-item {
             display: flex;
             align-items: center;
-            margin-bottom: 30px;
-            padding: 25px;
+            margin-bottom: 18px;
+            padding: 15px;
             background: var(--soft-white);
-            border-radius: 20px;
-            border-left: 4px solid var(--rose-gold);
+            border-radius: 12px;
+            border-left: 2.4px solid var(--rose-gold);
             transition: all 0.4s ease;
-            box-shadow: 0 12px 28px rgba(114, 47, 55, 0.08);
+            box-shadow: 0 7.2px 16.8px rgba(114, 47, 55, 0.08);
             position: relative;
             overflow: hidden;
         }
@@ -919,40 +919,40 @@
         }
 
         .itinerary-item:hover {
-            transform: translateX(15px);
-            box-shadow: 0 25px 50px rgba(114, 47, 55, 0.15);
+            transform: translateX(9px);
+            box-shadow: 0 15px 30px rgba(114, 47, 55, 0.15);
         }
 
         .itinerary-time {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.08rem;
             font-weight: 600;
             color: var(--wine-red);
-            min-width: 140px;
+            min-width: 84px;
             text-align: center;
             background: linear-gradient(135deg, var(--light-rose), rgba(232, 180, 184, 0.3));
-            padding: 15px;
-            border-radius: 15px;
+            padding: 9px;
+            border-radius: 9px;
         }
 
         .itinerary-icon {
-            font-size: 1.5rem;
+            font-size: 0.9rem;
             color: var(--rose-gold);
-            margin: 0 25px;
-            min-width: 35px;
+            margin: 0 15px;
+            min-width: 21px;
             text-align: center;
         }
 
         .itinerary-details h3 {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
+            font-size: 1.32rem;
             color: var(--wine-red);
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
 
         .itinerary-details p {
             color: var(--text-light);
-            font-size: 1.1rem;
+            font-size: 0.66rem;
             line-height: 1.6;
         }
 
@@ -1871,16 +1871,16 @@
             .itinerary-item {
                 flex-direction: column;
                 text-align: center;
-                padding: 30px 25px;
+                padding: 18px 15px;
             }
 
             .itinerary-time {
                 min-width: auto;
-                margin-bottom: 20px;
+                margin-bottom: 12px;
             }
 
             .itinerary-icon {
-                margin: 20px 0;
+                margin: 12px 0;
             }
 
             .location-cards {
@@ -1960,7 +1960,7 @@
             }
 
             .itinerary-item {
-                padding: 25px 20px;
+                padding: 15px 12px;
             }
 
             .location-card {
@@ -2534,6 +2534,11 @@
                     <i class="fas fa-heart" style="color: var(--rose-gold);"></i>
                     Por favor evita el color blanco, reservado para la novia
                 </p>
+                
+                <!-- Círculo blanco como ejemplo visual -->
+                <div style="display: flex; justify-content: center; margin-top: 15px;">
+                    <div class="color-item" style="background-color: white; border: 3px solid var(--wine-red);"></div>
+                </div>
             </div>
         </div>
     </section>
